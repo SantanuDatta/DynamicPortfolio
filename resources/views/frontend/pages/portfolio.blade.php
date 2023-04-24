@@ -1,6 +1,6 @@
 <div class="row mb-5">
     <div class="col">
-    <h6 class="font-weight-700  mb-0 text-uppercase mb-2">My works</h6>
+    <h6 class="font-weight-700  mb-0 text-uppercase mb-2">My Works</h6>
     <hr class="divider divider-left divider-lg float-left">
     </div>
 </div>
@@ -25,10 +25,10 @@
             $cDetials = $cDetails->shuffle();
         @endphp
         @foreach ($cDetails as $category)
-            @foreach (App\Models\Portfolio::inRandomOrder()->where('category_id', $category->id)->where('status', 1)->get() as $pDetails)
+            @foreach ($category->portfolio as $pDetail)
             <div class="col-lg-4 mb-5 ">
                 <div class="item {{ $category->slug }}">
-                    <a class="radius-1 shadow-inner  hover-effect d-block" data-overlay="rgba(52,58,64,.6)" href="{{ route('singleProject', $pDetails->slug) }}">
+                    <a class="radius-1 shadow-inner  hover-effect d-block" data-overlay="rgba(52,58,64,.6)" href="{{ route('singleProject', $pDetail->slug) }}">
                         <span class="hover-effect-container">
                             <span class="hover-effect-icon ">
                                 <span class="fas fa-link top-icon "></span>
@@ -36,7 +36,7 @@
                         </span>
                         <div class="p-2  ">
                             <div class="shadow radius-1">
-                                <img class=" radius-1" alt="" src="{{ asset('backend/img/portfolio/'. $pDetails->image) }}">
+                                <img class=" radius-1" alt="" src="{{ asset('backend/img/portfolio/'. $pDetail->image) }}">
                             </div>
                         </div>
                     </a>

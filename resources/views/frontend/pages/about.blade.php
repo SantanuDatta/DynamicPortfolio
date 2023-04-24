@@ -8,9 +8,7 @@
 <div class="row mb-2">
     <div class="col-lg-12">
     <h1 class="font-weight-600 mb-0">{{ $about->user->name }}</h1>
-    @foreach ($users as $user)
-        <h6 class="h5 text-alt">{{ $user->occupation }}</h6>
-    @endforeach
+        <h6 class="h5 text-alt">{{ $users->first()->occupation }}</h6>
     </div>
 </div>
 <div class="row mb-2">
@@ -53,7 +51,7 @@
 <div class="row vc skill des mb-5">
     <div class="col-md-11">
     <ul class="skills-list list-inline mb-0">
-        @foreach ($skills as $skill)
+        @foreach ($about->skills as $skill)
             <li>
                 <h6 class="font-weight-600 font-size-14 text-uppercase">{{ $skill->name }}</h6>
                 <div class="progress mb-3">
@@ -78,7 +76,7 @@
     </div>
 </div>
 <div class="row">
-    @foreach ($services as $service)
+    @foreach ($about->services as $service)
         <div class="col-md-4 mb-3 mb-lg-0">
             <div class=" service text-center">
                 <div class="outer ui-icon-outer-lg  radius-2 m-auto">
@@ -116,7 +114,7 @@
             </div>
         </div>
         <div class=" pt-7">
-            @foreach ($experiences as $experience)
+            @foreach ($about->experiences as $experience)
                 <div class="timeline-content">
                     <div class="mb-1">
                     <h6 class="font-weight-600 font-size-15 mb-1">{{ $experience->worked_as }} – {{ $experience->worked_at }} </h6>
@@ -154,7 +152,7 @@
             </div>
         </div>
         <div class=" pt-7">
-            @foreach ($educations as $education)
+            @foreach ($about->educations as $education)
             <div class="timeline-content">
                 <div class="mb-1">
                 <h6 class="font-weight-600 font-size-15 mb-1">{{ $education->degree }} – {{ $education->studied_at }} </h6>
@@ -263,7 +261,7 @@
 <div class="row mb-5 mt-6">
     
     <div class="testimonial-carousel">
-        @foreach ($certificates as $certificate)
+        @foreach ($about->certificates as $certificate)
         <div class="px-3  w-100 pt-5">
             <div class="card border-0    bg-dark">
                 <div class="card-body pr-5 pl-5 p5-3 pt-0 shadow radius-2">

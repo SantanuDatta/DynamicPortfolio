@@ -7,9 +7,7 @@
         <section id="home" class="shadow bg-dark radius-2 padding-dy text-center " >
             <div class="row v-height-50 v-centred">
                 <div class="col-md-12">
-                    @foreach ($users as $user)
-                        <h1 class="font-weight-600 mb-0">{{ $user->name }}</h1>
-                    @endforeach
+                    <h1 class="font-weight-600 mb-0">{{ $users->first()->name }}</h1>
                 <div class="text-rotation">
                     <div class="item">
                         <h6 class="h5 text-alt mt-1 mb-0 "> <span class=" text-rotating">Wordpress Designer, Web Desinger, Web Developer, Laravel Developer</span></h6>

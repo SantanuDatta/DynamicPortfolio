@@ -1,48 +1,46 @@
 <header class="shadow bg-dark radius-2 px-4 py-6 text-center ">
     <div class="profile-image">
         <div class="profile-image-border">
-        @foreach ($users as $user)
-            <img class="rounded-circle" src="{{ asset('backend/img/user/'.$user->image) }}" alt="/">
+            <img class="rounded-circle" src="{{ asset('backend/img/user/' . $users->first()->image) }}" alt="/">
         </div>
     </div>
     <div class="mt-4 mb-5">
-        <h3 class="font-weight-600 mb-0">{{ $user->name }}</h3>
-        <h6 class="text-alt">{{ $user->occupation }}</h6>
-        @endforeach
+        <h3 class="font-weight-600 mb-0">{{ $users->first()->name }}</h3>
+        <h6 class="text-alt">{{ $users->first()->occupation }}</h6>
     </div>
     <nav id="main-nav" class="main-nav clearfix tabbed">
-    <ul class="pl-0">
-        <li class="outer radius-2 mb-3">
-            <a class="inner radius-2" href="#home" >
-                <div class="media align-items-center ">
-                <div class="media-body text-left">
-                    <span class="font-weight-600 font-size-13 text-uppercase  text-muted">Home</span>
-                </div>
-                <img src="{{ asset('backend/img/icons/web.png') }}" style="width: 30px;"/>
-                </div>
-            </a>
-        </li>
-        <li class="outer radius-2 mb-3">
-            <a class="inner radius-2" href="#about" >
-                <div class="media  align-items-center ">
-                <div class="media-body text-left">
-                    <span class="font-weight-600 font-size-13 text-uppercase  text-muted">About</span>
-                </div>
-                <img src="{{ asset('backend/img/icons/web-account.png') }}" style="width: 30px;"/>
-                </div>
-            </a>
-        </li>
-        <li class="outer radius-2 mb-3">
-            <a class="inner radius-2" href="#portfolio" >
-                <div class="media  align-items-center ">
-                <div class="media-body text-left">
-                    <span class="font-weight-600 font-size-13 text-uppercase  text-muted">Portfolio</span>
-                </div>
-                <img src="{{ asset('backend/img/icons/resume-website.png') }}" style="width: 30px;"/>
-                </div>
-            </a>
-        </li>
-        {{-- <li class="outer radius-2 mb-3">
+        <ul class="pl-0">
+            <li class="outer radius-2 mb-3">
+                <a class="inner radius-2" href="#home">
+                    <div class="media align-items-center ">
+                        <div class="media-body text-left">
+                            <span class="font-weight-600 font-size-13 text-uppercase  text-muted">Home</span>
+                        </div>
+                        <img src="{{ asset('backend/img/icons/web.png') }}" style="width: 30px;" />
+                    </div>
+                </a>
+            </li>
+            <li class="outer radius-2 mb-3">
+                <a class="inner radius-2" href="#about">
+                    <div class="media  align-items-center ">
+                        <div class="media-body text-left">
+                            <span class="font-weight-600 font-size-13 text-uppercase  text-muted">About</span>
+                        </div>
+                        <img src="{{ asset('backend/img/icons/web-account.png') }}" style="width: 30px;" />
+                    </div>
+                </a>
+            </li>
+            <li class="outer radius-2 mb-3">
+                <a class="inner radius-2" href="#portfolio">
+                    <div class="media  align-items-center ">
+                        <div class="media-body text-left">
+                            <span class="font-weight-600 font-size-13 text-uppercase  text-muted">Portfolio</span>
+                        </div>
+                        <img src="{{ asset('backend/img/icons/resume-website.png') }}" style="width: 30px;" />
+                    </div>
+                </a>
+            </li>
+            {{-- <li class="outer radius-2 mb-3">
             <a class=" inner radius-2" href="#blog" >
                 <div class="media  align-items-center ">
                 <div class="media-body text-left">
@@ -67,17 +65,17 @@
                 </div>
             </a>
         </li> --}}
-        <li class="outer radius-2 mb-3">
-            <a class=" inner radius-2" href="#contact" >
-                <div class="media  align-items-center ">
-                <div class="media-body text-left">
-                    <span class="font-weight-600 font-size-13 text-uppercase  text-muted">Contact</span>
-                </div>
-                <img src="{{ asset('backend/img/icons/new-post.png') }}" style="width: 30px;"/>
-                </div>
-            </a>
-        </li>
-    </ul>
+            <li class="outer radius-2 mb-3">
+                <a class=" inner radius-2" href="#contact">
+                    <div class="media  align-items-center ">
+                        <div class="media-body text-left">
+                            <span class="font-weight-600 font-size-13 text-uppercase  text-muted">Contact</span>
+                        </div>
+                        <img src="{{ asset('backend/img/icons/new-post.png') }}" style="width: 30px;" />
+                    </div>
+                </a>
+            </li>
+        </ul>
     </nav>
 </header>
 {{-- <div class="text-center mt-5 ">

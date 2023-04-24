@@ -26,5 +26,5 @@
 <meta name="author" content="ThemePixels">
 
 
-<title>@foreach ($settings as $setting){{ $setting->site_title }}@endforeach - @yield('title')</title>
+<title>{{ $settings->first()->site_title }} - @yield('title')</title>
 

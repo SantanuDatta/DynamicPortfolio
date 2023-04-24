@@ -1,12 +1,18 @@
-<?php 
+<?php
 
 namespace App\Http\View\Composers;
+
 use App\Models\Setting;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 
-class SettingComposer{
+class SettingComposer
+{
     public function compose(View $view)
     {
-        $view->with('settings', Setting::where('id', 1)->get());
+        $settings = Cache::remember('settings', now()->addDay(), function () {
+            return Setting::where('id', 1)->first();
+        });
+        $view->with('settings', $settings);
     }
 }

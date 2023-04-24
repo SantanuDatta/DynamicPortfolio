@@ -1,12 +1,18 @@
-<?php 
+<?php
 
 namespace App\Http\View\Composers;
+
 use App\Models\User;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 
-class UserComposer{
+class UserComposer
+{
     public function compose(View $view)
     {
-        $view->with('users', User::where('id', 1)->get());
+        $users = Cache::remember('users', now()->addDay(), function () {
+            return User::where('id', 1)->first();
+        });
+        $view->with('users', $users);
     }
 }
