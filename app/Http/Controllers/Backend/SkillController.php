@@ -21,15 +21,15 @@ class SkillController extends Controller
 
     public function store(Request $request)
     {
-        $skill = new Skill();
-        $skill->about_id      = 1;
-        $skill->name          = $request->name;
-        $skill->skill_rate    = $request->skill_rate;
+        $skill             = new Skill();
+        $skill->about_id   = 1;
+        $skill->name       = $request->name;
+        $skill->skill_rate = $request->skill_rate;
 
-        $notification = array(
-            'alert-type'    => 'success',
-            'message'       => 'Skill Has Been Added!'
-        );
+        $notification = [
+            'alert-type' => 'success',
+            'message'    => 'Skill Has Been Added!',
+        ];
 
         $skill->save();
         return redirect()->route('skill.manage')->with($notification);
@@ -38,23 +38,23 @@ class SkillController extends Controller
     public function edit($id)
     {
         $skill = Skill::find($id);
-        if(!is_null($skill)){
+        if (!is_null($skill)) {
             return view('backend.pages.skill.edit', compact('skill'));
-        }else{
+        } else {
             //404
         }
     }
 
     public function update(Request $request, $id)
     {
-        $skill = Skill::find($id);
-        $skill->name          = $request->name;
-        $skill->skill_rate    = $request->skill_rate;
+        $skill             = Skill::find($id);
+        $skill->name       = $request->name;
+        $skill->skill_rate = $request->skill_rate;
 
-        $notification = array(
-            'alert-type'    => 'success',
-            'message'       => 'Skill Updated Successfully!'
-        );
+        $notification = [
+            'alert-type' => 'success',
+            'message'    => 'Skill Updated Successfully!',
+        ];
 
         $skill->save();
         return redirect()->route('skill.manage')->with($notification);
@@ -63,16 +63,16 @@ class SkillController extends Controller
     public function destroy($id)
     {
         $skill = Skill::find($id);
-        if(!is_null($skill)){
-            
-            $notification = array(
-                'alert-type'    => 'error',
-                'message'       => 'Skill Removed Successfully!'
-            );
-    
+        if (!is_null($skill)) {
+
+            $notification = [
+                'alert-type' => 'error',
+                'message'    => 'Skill Removed Successfully!',
+            ];
+
             $skill->delete();
             return redirect()->route('skill.manage')->with($notification);
-        }else{
+        } else {
             //404
         }
     }

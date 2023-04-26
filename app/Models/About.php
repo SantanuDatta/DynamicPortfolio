@@ -21,10 +21,11 @@ class About extends Model
         'phone',
     ];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
-    
+
     public function experiences()
     {
         return $this->hasMany(Experience::class);

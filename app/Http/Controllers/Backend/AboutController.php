@@ -16,16 +16,16 @@ class AboutController extends Controller
 
     public function update(Request $request, $id)
     {
-        $about = About::find($id);
-        $about->user_id         = $request->user_id;
-        $about->description     = $request->description;
-        $about->email           = $request->email;
-        $about->phone           = $request->phone;
+        $about              = About::find($id);
+        $about->user_id     = $request->user_id;
+        $about->description = $request->description;
+        $about->email       = $request->email;
+        $about->phone       = $request->phone;
 
-        $notification = array(
-            'alert-type'     => 'success',
-            'message'   => 'Updated Successfully!',
-        );
+        $notification = [
+            'alert-type' => 'success',
+            'message'    => 'Updated Successfully!',
+        ];
 
         $about->save();
         return redirect()->back()->with($notification);

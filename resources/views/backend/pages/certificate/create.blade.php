@@ -5,8 +5,9 @@
     <div class="br-pagetitle">
         <i class="icon ion-ios-plus-outline tx-70 lh-0"></i>
         <div>
-        <h4>Add New Certificate</h4>
-        <p class="mg-b-0">Do bigger things with Bracket plus, the responsive bootstrap 4 admin template.</p>
+            <h4>Add New Certificate</h4>
+            <p class="mg-b-0">Do bigger things with Bracket plus, the responsive bootstrap 4 admin
+                template.</p>
         </div>
     </div><!-- d-flex -->
 
@@ -24,13 +25,15 @@
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <label for="">Certficate Id<span class="tx-danger">*</span></label>
-                                        <input type="text" class="form-control" name="c_id" placeholder="Id Of The Degree You Have Got?">
+                                        <input class="form-control" name="c_id" type="text"
+                                            placeholder="Id Of The Degree You Have Got?">
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <label for="">Degree</label>
-                                        <input type="text" name="degree" class="form-control" id="" placeholder="What Degree Did You Get?">
+                                        <input class="form-control" id="" name="degree" type="text"
+                                            placeholder="What Degree Did You Get?">
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
@@ -38,13 +41,16 @@
                                         <label for="">Date</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="ion-ios-calendar tx-16 lh-0 op-6"></i></span>
+                                                <span class="input-group-text"><i
+                                                        class="ion-ios-calendar tx-16 lh-0 op-6"></i></span>
                                             </div>
-                                            <input type="text" name="date" class="form-control fc-datepicker" placeholder="MM/DD/YYYY">
+                                            <input class="form-control fc-datepicker" name="date" type="text"
+                                                placeholder="MM/DD/YYYY">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <button type="submit" name="addCertificate" class="btn btn-teal float-right">Add Certificate</button>
+                                        <button class="btn btn-teal float-right" name="addCertificate" type="submit">Add
+                                            Certificate</button>
                                     </div>
                                 </div>
                             </div>

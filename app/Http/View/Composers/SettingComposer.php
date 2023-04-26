@@ -11,7 +11,7 @@ class SettingComposer
     public function compose(View $view)
     {
         $settings = Cache::remember('settings', now()->addDay(), function () {
-            return Setting::where('id', 1)->first();
+            return Setting::first();
         });
         $view->with('settings', $settings);
     }

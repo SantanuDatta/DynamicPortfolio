@@ -21,16 +21,16 @@ class ServiceController extends Controller
 
     public function store(Request $request)
     {
-        $service = new Service();
-        $service->about_id      = 1;
-        $service->name          = $request->name;
-        $service->description   = $request->description;
-        $service->image_link    = $request->image_link;
+        $service              = new Service();
+        $service->about_id    = 1;
+        $service->name        = $request->name;
+        $service->description = $request->description;
+        $service->image_link  = $request->image_link;
 
-        $notification = array(
-            'alert-type'    => 'success',
-            'message'       => 'Service Has Been Added!'
-        );
+        $notification = [
+            'alert-type' => 'success',
+            'message'    => 'Service Has Been Added!',
+        ];
 
         $service->save();
         return redirect()->route('service.manage')->with($notification);
@@ -39,24 +39,24 @@ class ServiceController extends Controller
     public function edit($id)
     {
         $service = Service::find($id);
-        if(!is_null($service)){
+        if (!is_null($service)) {
             return view('backend.pages.service.edit', compact('service'));
-        }else{
+        } else {
             //404
         }
     }
 
     public function update(Request $request, $id)
     {
-        $service = Service::find($id);
-        $service->name          = $request->name;
-        $service->description   = $request->description;
-        $service->image_link    = $request->image_link;
+        $service              = Service::find($id);
+        $service->name        = $request->name;
+        $service->description = $request->description;
+        $service->image_link  = $request->image_link;
 
-        $notification = array(
-            'alert-type'    => 'success',
-            'message'       => 'Service Updated Successfully!'
-        );
+        $notification = [
+            'alert-type' => 'success',
+            'message'    => 'Service Updated Successfully!',
+        ];
 
         $service->save();
         return redirect()->route('service.manage')->with($notification);
@@ -65,16 +65,16 @@ class ServiceController extends Controller
     public function destroy($id)
     {
         $service = Service::find($id);
-        if(!is_null($service)){
-            
-            $notification = array(
-                'alert-type'    => 'error',
-                'message'       => 'Service Removed Successfully!'
-            );
-    
+        if (!is_null($service)) {
+
+            $notification = [
+                'alert-type' => 'error',
+                'message'    => 'Service Removed Successfully!',
+            ];
+
             $service->delete();
             return redirect()->route('service.manage')->with($notification);
-        }else{
+        } else {
             //404
         }
     }

@@ -19,6 +19,6 @@ class Experience extends Model
         'degree',
         'company_info',
         'start_date',
-        'end_date'
+        'end_date',
     ];
 }

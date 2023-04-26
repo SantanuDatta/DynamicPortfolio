@@ -16,7 +16,7 @@ class FrontendController extends Controller
     {
         $abouts = About::with(['user', 'experiences', 'educations', 'skills', 'services', 'certificates'])->get();
         $cDetails = Category::with('portfolio')->where('is_featured', 1)->where('status', 1)->get();
-        return view('frontend.pages.home', compact('abouts','cDetails'));
+        return view('frontend.pages.home', compact('abouts', 'cDetails'));
     }
 
     public function singleProject($slug)
@@ -28,10 +28,10 @@ class FrontendController extends Controller
     public function contact(Request $request)
     {
         $mailData = [
-            'name'      => $request->name,
-            'email'     => $request->email,
-            'subject'   => $request->subject,
-            'message'   => $request->message
+            'name'    => $request->name,
+            'email'   => $request->email,
+            'subject' => $request->subject,
+            'message' => $request->message,
         ];
 
         // Send an email to the admin

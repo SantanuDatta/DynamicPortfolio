@@ -11,7 +11,7 @@ class UserComposer
     public function compose(View $view)
     {
         $users = Cache::remember('users', now()->addDay(), function () {
-            return User::where('id', 1)->first();
+            return User::first();
         });
         $view->with('users', $users);
     }

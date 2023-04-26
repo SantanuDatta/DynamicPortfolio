@@ -11,7 +11,8 @@ class CertificateController extends Controller
     public function index()
     {
         $certificates = Certificate::orderBy('id', 'asc')->get();
-        return view('backend.pages.certificate.manage', compact('certificates'));
+        return view('backend.pages.certificate.manage', compact('certificates')
+        );
     }
 
     public function create()
@@ -21,16 +22,16 @@ class CertificateController extends Controller
 
     public function store(Request $request)
     {
-        $certificate = new Certificate();
-        $certificate->about_id      = 1;
-        $certificate->c_id          = $request->c_id;
-        $certificate->degree        = $request->degree;
-        $certificate->date          = $request->date;
+        $certificate           = new Certificate();
+        $certificate->about_id = 1;
+        $certificate->c_id     = $request->c_id;
+        $certificate->degree   = $request->degree;
+        $certificate->date     = $request->date;
 
-        $notification = array(
-            'alert-type'    => 'success',
-            'message'       => 'Certificate Has Been Added!'
-        );
+        $notification = [
+            'alert-type' => 'success',
+            'message'    => 'Certificate Has Been Added!',
+        ];
 
         $certificate->save();
         return redirect()->route('certificate.manage')->with($notification);
@@ -39,24 +40,25 @@ class CertificateController extends Controller
     public function edit($id)
     {
         $certificate = Certificate::find($id);
-        if(!is_null($certificate)){
-            return view('backend.pages.certificate.edit', compact('certificate'));
-        }else{
+        if (!is_null($certificate)) {
+            return view('backend.pages.certificate.edit', compact('certificate'
+            ));
+        } else {
             //404
         }
     }
 
     public function update(Request $request, $id)
     {
-        $certificate = Certificate::find($id);
-        $certificate->c_id          = $request->c_id;
-        $certificate->degree        = $request->degree;
-        $certificate->date          = $request->date;
+        $certificate         = Certificate::find($id);
+        $certificate->c_id   = $request->c_id;
+        $certificate->degree = $request->degree;
+        $certificate->date   = $request->date;
 
-        $notification = array(
-            'alert-type'    => 'success',
-            'message'       => 'Certificate Updated Successfully!'
-        );
+        $notification = [
+            'alert-type' => 'success',
+            'message'    => 'Certificate Updated Successfully!',
+        ];
 
         $certificate->save();
         return redirect()->route('certificate.manage')->with($notification);
@@ -65,16 +67,16 @@ class CertificateController extends Controller
     public function destroy($id)
     {
         $certificate = Certificate::find($id);
-        if(!is_null($certificate)){
-            
-            $notification = array(
-                'alert-type'    => 'error',
-                'message'       => 'Certificate Removed Successfully!'
-            );
-    
+        if (!is_null($certificate)) {
+
+            $notification = [
+                'alert-type' => 'error',
+                'message'    => 'Certificate Removed Successfully!',
+            ];
+
             $certificate->delete();
             return redirect()->route('certificate.manage')->with($notification);
-        }else{
+        } else {
             //404
         }
     }

@@ -21,18 +21,18 @@ class ExperienceController extends Controller
 
     public function store(Request $request)
     {
-        $experience = new Experience();
-        $experience->about_id       = 1;
-        $experience->worked_at      = $request->worked_at;
-        $experience->company_info   = $request->company_info;
-        $experience->worked_as      = $request->worked_as;
-        $experience->start_date     = $request->start_date;
-        $experience->end_date       = $request->end_date;
+        $experience               = new Experience();
+        $experience->about_id     = 1;
+        $experience->worked_at    = $request->worked_at;
+        $experience->company_info = $request->company_info;
+        $experience->worked_as    = $request->worked_as;
+        $experience->start_date   = $request->start_date;
+        $experience->end_date     = $request->end_date;
 
-        $notification = array(
-            'alert-type'    => 'success',
-            'message'       => 'New Experience Added!'
-        );
+        $notification = [
+            'alert-type' => 'success',
+            'message'    => 'New Experience Added!',
+        ];
 
         $experience->save();
         return redirect()->route('experience.manage')->with($notification);
@@ -41,26 +41,26 @@ class ExperienceController extends Controller
     public function edit($id)
     {
         $experience = Experience::find($id);
-        if(!is_null($experience)){
+        if (!is_null($experience)) {
             return view('backend.pages.experience.edit', compact('experience'));
-        }else{
+        } else {
             //404
         }
     }
 
     public function update(Request $request, $id)
     {
-        $experience = Experience::find($id);
-        $experience->worked_at = $request->worked_at;
+        $experience               = Experience::find($id);
+        $experience->worked_at    = $request->worked_at;
         $experience->company_info = $request->company_info;
-        $experience->worked_as = $request->worked_as;
-        $experience->start_date = $request->start_date;
-        $experience->end_date = $request->end_date;
+        $experience->worked_as    = $request->worked_as;
+        $experience->start_date   = $request->start_date;
+        $experience->end_date     = $request->end_date;
 
-        $notification = array(
-            'alert-type'    => 'success',
-            'message'       => 'Experience Updated!'
-        );
+        $notification = [
+            'alert-type' => 'success',
+            'message'    => 'Experience Updated!',
+        ];
 
         $experience->save();
         return redirect()->route('experience.manage')->with($notification);
@@ -69,14 +69,14 @@ class ExperienceController extends Controller
     public function destroy($id)
     {
         $experience = Experience::find($id);
-        if(!is_null($experience)){
-            $notification = array(
-                'alert-type'    => 'error',
-                'message'       => 'Experience Removed Successfully!'
-            );
+        if (!is_null($experience)) {
+            $notification = [
+                'alert-type' => 'error',
+                'message'    => 'Experience Removed Successfully!',
+            ];
             $experience->delete();
             return redirect()->route('experience.manage')->with($notification);
-        }else{
+        } else {
             //404
         }
     }

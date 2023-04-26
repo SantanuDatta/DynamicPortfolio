@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Portfolio;
+use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use File;
 use Intervention\Image\Facades\Image;
 
 class PortfolioController extends Controller
@@ -26,7 +26,7 @@ class PortfolioController extends Controller
 
     public function store(Request $request)
     {
-        $portfolio = new Portfolio();
+        $portfolio              = new Portfolio();
         $portfolio->category_id = $request->category_id;
         $portfolio->name        = $request->name;
         $portfolio->slug        = Str::slug($request->name);
@@ -37,19 +37,19 @@ class PortfolioController extends Controller
         $portfolio->company     = $request->company;
         $portfolio->link        = $request->link;
         $portfolio->status      = $request->status;
-        if($request->image){
-            $image = $request->file('image');
-            $img = rand() . '.' . $image->getClientOriginalExtension();
-            $location = public_path('backend/img/portfolio/' . $img);
+        if ($request->image) {
+            $image       = $request->file('image');
+            $img         = rand() . '.' . $image->getClientOriginalExtension();
+            $location    = public_path('backend/img/portfolio/' . $img);
             $imageResize = Image::make($image);
             $imageResize->resize(700, 525)->save($location);
             $portfolio->image = $img;
         }
 
-        $notification = array(
-            'alert-type'    => 'success',
-            'message'       => 'New Portfolio Added!',
-        );
+        $notification = [
+            'alert-type' => 'success',
+            'message'    => 'New Portfolio Added!',
+        ];
 
         $portfolio->save();
         return redirect()->route('portfolio.manage')->with($notification);
@@ -60,17 +60,17 @@ class PortfolioController extends Controller
         $request->validate([
             'upload' => 'image',
         ]);
-        if($request->hasFile('upload')) {
+        if ($request->hasFile('upload')) {
             $originName = $request->file('upload')->getClientOriginalName();
-            $fileName = pathinfo($originName, PATHINFO_FILENAME);
-            $extension = $request->file('upload')->getClientOriginalExtension();
-            $fileName = $fileName.'_'.time().'.'.$extension;
+            $fileName   = pathinfo($originName, PATHINFO_FILENAME);
+            $extension  = $request->file('upload')->getClientOriginalExtension();
+            $fileName   = $fileName . '_' . time() . '.' . $extension;
             $request->file('upload')->move(public_path('backend/img/portfolio'), $fileName);
             $CKEditorFuncNum = $request->input('CKEditorFuncNum');
-            $url = asset('backend/img/portfolio/'.$fileName); 
-            $msg = 'Image uploaded successfully'; 
-            $response = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
-            @header('Content-type: text/html; charset=utf-8'); 
+            $url             = asset('backend/img/portfolio/' . $fileName);
+            $msg             = 'Image uploaded successfully';
+            $response        = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
+            @header('Content-type: text/html; charset=utf-8');
             echo $response;
         }
     }
@@ -78,17 +78,17 @@ class PortfolioController extends Controller
     public function edit($id)
     {
         $portfolio = Portfolio::find($id);
-        if(!is_null($portfolio)){
+        if (!is_null($portfolio)) {
             $categories = Category::orderBy('name', 'asc')->get();
             return view('backend.pages.portfolio.edit', compact('portfolio', 'categories'));
-        }else{
+        } else {
             //404
         }
     }
 
     public function update(Request $request, $id)
     {
-        $portfolio = Portfolio::find($id);
+        $portfolio              = Portfolio::find($id);
         $portfolio->category_id = $request->category_id;
         $portfolio->name        = $request->name;
         $portfolio->slug        = Str::slug($request->name);
@@ -99,22 +99,22 @@ class PortfolioController extends Controller
         $portfolio->company     = $request->company;
         $portfolio->link        = $request->link;
         $portfolio->status      = $request->status;
-        if($request->image){
-            if(File::exists('backend/img/portfolio/' . $portfolio->image)){
+        if ($request->image) {
+            if (File::exists('backend/img/portfolio/' . $portfolio->image)) {
                 File::delete('backend/img/portfolio/' . $portfolio->image);
             }
-            $image = $request->file('image');
-            $img = rand() . '.' . $image->getClientOriginalExtension();
-            $location = public_path('backend/img/portfolio/' . $img);
+            $image       = $request->file('image');
+            $img         = rand() . '.' . $image->getClientOriginalExtension();
+            $location    = public_path('backend/img/portfolio/' . $img);
             $imageResize = Image::make($image);
             $imageResize->resize(700, 525)->save($location);
             $portfolio->image = $img;
         }
 
-        $notification = array(
-            'alert-type'    => 'success',
-            'message'       => 'Portfolio Updated!',
-        );
+        $notification = [
+            'alert-type' => 'success',
+            'message'    => 'Portfolio Updated!',
+        ];
 
         $portfolio->save();
         return redirect()->route('portfolio.manage')->with($notification);
@@ -123,18 +123,18 @@ class PortfolioController extends Controller
     public function destroy($id)
     {
         $portfolio = Portfolio::find($id);
-        if(!is_null($portfolio)){
-            if(File::exists('backend/img/portfolio/' . $portfolio->imag)){
+        if (!is_null($portfolio)) {
+            if (File::exists('backend/img/portfolio/' . $portfolio->imag)) {
                 File::delete('backend/img/portfolio/' . $portfolio->image);
             }
-            $notification = array(
-                'alert-type'    => 'error',
-                'message'       => 'Portfolio Removed!',
-            );
+            $notification = [
+                'alert-type' => 'error',
+                'message'    => 'Portfolio Removed!',
+            ];
             $portfolio->delete();
             return redirect()->route('portfolio.manage')->with($notification);
-            
-        }else{
+
+        } else {
             //404
         }
     }

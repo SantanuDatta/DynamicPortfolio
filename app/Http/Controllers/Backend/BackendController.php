@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\File;
 
 class BackendController extends Controller
 {
@@ -21,7 +23,7 @@ class BackendController extends Controller
     {
         return view('backend.pages.auth.login');
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *

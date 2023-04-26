@@ -5,8 +5,9 @@
     <div class="br-pagetitle">
         <i class="icon ion-ios-settings tx-70 lh-0"></i>
         <div>
-        <h4>About Summary</h4>
-        <p class="mg-b-0">Do bigger things with Bracket plus, the responsive bootstrap 4 admin template.</p>
+            <h4>About Summary</h4>
+            <p class="mg-b-0">Do bigger things with Bracket plus, the responsive
+                bootstrap 4 admin template.</p>
         </div>
     </div><!-- d-flex -->
 
@@ -25,31 +26,34 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="">Name</label>
-                                            <input type="text" class="form-control" value="{{ $about->user->name }}">
+                                            <input class="form-control" type="text" value="{{ $about->user->name }}">
                                         </div>
                                         <div class="form-group">
-                                            <label for="">Describe Yourself</label>
-                                            <textarea name="description" id="short_desc" class="form-control">{{ $about->description }}</textarea>
+                                            <label for="">Describe
+                                                Yourself</label>
+                                            <textarea class="form-control" id="short_desc" name="description">{{ $about->description }}</textarea>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="">Your Email</label>
-                                            <input type="email" class="form-control" name="email" value="{{ $about->email }}" placeholder="Your Email Address">
+                                            <input class="form-control" name="email" type="email"
+                                                value="{{ $about->email }}" placeholder="Your Email Address">
                                         </div>
                                         <div class="form-group">
                                             <label for="">Phone</label>
-                                            <input type="text" class="form-control" name="phone" value="{{ $about->phone }}" placeholder="Your Phone Number">
+                                            <input class="form-control" name="phone" type="text"
+                                                value="{{ $about->phone }}" placeholder="Your Phone Number">
                                         </div>
                                         <div class="form-group">
-                                            <input type="hidden" name="user_id" value="{{ $about->user_id }}">
-                                            <button type="submit" name="summary" class="btn btn-teal float-right">Update Summary</button>
+                                            <input name="user_id" type="hidden" value="{{ $about->user_id }}">
+                                            <button class="btn btn-teal float-right" name="summary" type="submit">Update
+                                                Summary</button>
                                         </div>
                                     </div>
                                 </div>
                             </form>
                         @endforeach
-                        
                     </div><!-- card-body -->
                 </div><!-- card -->
             </div>

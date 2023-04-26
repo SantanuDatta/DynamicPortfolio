@@ -19,6 +19,6 @@ class Education extends Model
         'degree',
         'info',
         'start_date',
-        'end_date'
+        'end_date',
     ];
 }

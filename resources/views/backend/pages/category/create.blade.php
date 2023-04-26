@@ -5,8 +5,9 @@
     <div class="br-pagetitle">
         <i class="icon ion-ios-plus-outline tx-70 lh-0"></i>
         <div>
-        <h4>Add New Category</h4>
-        <p class="mg-b-0">Do bigger things with Bracket plus, the responsive bootstrap 4 admin template.</p>
+            <h4>Add New Category</h4>
+            <p class="mg-b-0">Do bigger things with Bracket plus, the responsive
+                bootstrap 4 admin template.</p>
         </div>
     </div><!-- d-flex -->
 
@@ -24,16 +25,19 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="">Category Name<span class="tx-danger">*</span></label>
-                                        <input type="text" class="form-control" name="name" placeholder="Please Input Category Name">
+                                        <input class="form-control" name="name" type="text"
+                                            placeholder="Please Input Category Name">
                                     </div>
                                     <div class="form-group">
-                                        <label for="">Category Short Description</label>
-                                        <textarea id="short_desc" name="description" class="form-control"></textarea>
+                                        <label for="">Category Short
+                                            Description</label>
+                                        <textarea class="form-control" id="short_desc" name="description"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="">Feature Category?</label><br>
+                                        <label for="">Feature
+                                            Category?</label><br>
                                         <div class="form-check-inline">
                                             <label class="rdiobox rdiobox-info">
                                                 <input name="is_featured" type="radio" value="1">
@@ -49,17 +53,18 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="">Select A Status<span class="tx-danger">*</span></label>
-                                        <select name="status" class="form-control" id="">
-                                            <option value="" hidden>Please Select Status</option>
+                                        <select class="form-control" id="" name="status">
+                                            <option value="" hidden>Please
+                                                Select Status</option>
                                             <option value="1">Active</option>
                                             <option value="0">Inactive</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <button type="submit" name="addCategory" class="btn btn-teal float-right">Add Category</button>
+                                        <button class="btn btn-teal float-right" name="addCategory" type="submit">Add
+                                            Category</button>
                                     </div>
                                 </div>
-                                
                             </div>
                         </form>
                     </div><!-- card-body -->

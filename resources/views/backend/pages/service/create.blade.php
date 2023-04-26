@@ -5,8 +5,9 @@
     <div class="br-pagetitle">
         <i class="icon ion-ios-plus-outline tx-70 lh-0"></i>
         <div>
-        <h4>Add New Service</h4>
-        <p class="mg-b-0">Do bigger things with Bracket plus, the responsive bootstrap 4 admin template.</p>
+            <h4>Add New Service</h4>
+            <p class="mg-b-0">Do bigger things with Bracket plus, the responsive bootstrap 4 admin
+                template.</p>
         </div>
     </div><!-- d-flex -->
 
@@ -24,23 +25,27 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="">Name<span class="tx-danger">*</span></label>
-                                        <input type="text" class="form-control" name="name" placeholder="Name Of The Service">
+                                        <input class="form-control" name="name" type="text"
+                                            placeholder="Name Of The Service">
                                     </div>
                                     <div class="form-group">
                                         <label for="">Description</label>
-                                        <textarea id="short_desc" name="description" class="form-control form-control-dark"></textarea>
+                                        <textarea class="form-control form-control-dark" id="short_desc" name="description"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="">Image Link</label>
                                         <div class="input-group">
-                                            <span class="input-group-text"><i class="icon ion-at tx-16 lh-0 op-6"></i></span>
-                                            <input type="text" class="form-control" name="image_link" placeholder="Font Image Link">
+                                            <span class="input-group-text"><i
+                                                    class="icon ion-at tx-16 lh-0 op-6"></i></span>
+                                            <input class="form-control" name="image_link" type="text"
+                                                placeholder="Font Image Link">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <button type="submit" name="addService" class="btn btn-teal float-right">Add Service</button>
+                                        <button class="btn btn-teal float-right" name="addService" type="submit">Add
+                                            Service</button>
                                     </div>
                                 </div>
                             </div>

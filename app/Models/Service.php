@@ -17,6 +17,6 @@ class Service extends Model
         'about_id',
         'name',
         'description',
-        'image_link'
+        'image_link',
     ];
 }

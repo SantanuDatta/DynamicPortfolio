@@ -1,19 +1,17 @@
 <!-- Favicon -->
-@foreach ($settings as $setting)
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('backend/img/settings/favicon/' . $setting->favicon) }}" />
-@endforeach
-<link href="{{ asset('frontend/assets/css/bootstrap.css') }}" rel="stylesheet" type="text/css" media="all" />
-<link href="{{ asset('frontend/assets/css/main.css') }}" rel="stylesheet" type="text/css" media="all" />
-<link href="{{ asset('frontend/assets/css/venobox.css') }}" rel="stylesheet" type="text/css" media="all" />
-<link href="{{ asset('frontend/assets/css/animate.css') }}" rel="stylesheet" type="text/css" media="all"/>
-<link href="{{ asset('frontend/assets/css/fonts.css') }}" rel="stylesheet" type="text/css" media="all" />
-<link href="{{ asset('frontend/assets/css/owl-carousel/owl.carousel.css') }}" rel="stylesheet"  media="all"/>
-<link href="{{ asset('frontend/assets/css/owl-carousel/owl.theme.css') }}" rel="stylesheet"  media="all" />
-<link href="{{ asset('frontend/assets/css/owl-carousel/owl.transitions.css') }}" rel="stylesheet"  media="all" />
+<link type="image/x-icon" href="{{ asset('backend/img/settings/favicon/' . $settings->favicon) }}" rel="shortcut icon" />
+<link type="text/css" href="{{ asset('frontend/assets/css/bootstrap.css') }}" media="all" rel="stylesheet" />
+<link type="text/css" href="{{ asset('frontend/assets/css/main.css') }}" media="all" rel="stylesheet" />
+<link type="text/css" href="{{ asset('frontend/assets/css/venobox.css') }}" media="all" rel="stylesheet" />
+<link type="text/css" href="{{ asset('frontend/assets/css/animate.css') }}" media="all" rel="stylesheet" />
+<link type="text/css" href="{{ asset('frontend/assets/css/fonts.css') }}" media="all" rel="stylesheet" />
+<link href="{{ asset('frontend/assets/css/owl-carousel/owl.carousel.css') }}" media="all" rel="stylesheet" />
+<link href="{{ asset('frontend/assets/css/owl-carousel/owl.theme.css') }}" media="all" rel="stylesheet" />
+<link href="{{ asset('frontend/assets/css/owl-carousel/owl.transitions.css') }}" media="all" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/fontawesome.min.css"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/fontawesome.min.css" rel="stylesheet" />
 <!--Alternate styles for demo purposes only-->
-<link href="{{ asset('frontend/assets/css/switcher.css') }}"  rel="stylesheet" type="text/css"/>
+<link type="text/css" href="{{ asset('frontend/assets/css/switcher.css') }}" rel="stylesheet" />
 {{-- <link href="css/styles/clr-1.css" rel="stylesheet" type="text/css" title="clr-1" media="all"/>
 <link href="css/styles/clr-2.css" rel="alternate stylesheet" type="text/css" title="clr-2" media="all" />
 <link href="css/styles/clr-3.css" rel="alternate stylesheet" type="text/css" title="clr-3" media="all" />
@@ -32,7 +30,8 @@
 <link href="css/styles/clr-16.css" rel="alternate stylesheet" type="text/css" title="clr-16" media="all" />
 <link href="css/styles/clr-17.css" rel="alternate stylesheet" type="text/css" title="clr-17" media="all" />
 <link href="css/styles/clr-18.css" rel="alternate stylesheet" type="text/css" title="clr-18" media="all" /> --}}
-<link href="{{ asset('frontend/assets/css/styles/clr-19.css') }}" rel="stylesheet" type="text/css" title="clr-19" media="all" />
+<link type="text/css" href="{{ asset('frontend/assets/css/styles/clr-19.css') }}" title="clr-19" media="all"
+    rel="stylesheet" />
 {{-- <link href="css/styles/clr-20.css" rel="alternate stylesheet" type="text/css" title="clr-20" media="all" />
 <link href="css/styles/clr-21.css" rel="alternate stylesheet" type="text/css" title="clr-21" media="all" />
 <link href="css/styles/clr-22.css" rel="alternate stylesheet" type="text/css" title="clr-22" media="all" />

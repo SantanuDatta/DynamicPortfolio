@@ -11,20 +11,19 @@
 <meta name="twitter:image" content="http://themepixels.me/bracketplus/img/bracketplus-social.png">
 
 <!-- Facebook -->
-<meta property="og:url" content="http://themepixels.me/bracketplus">
-<meta property="og:title" content="Bracket Plus">
-<meta property="og:description" content="Premium Quality and Responsive UI for Dashboard.">
+<meta content="http://themepixels.me/bracketplus" property="og:url">
+<meta content="Bracket Plus" property="og:title">
+<meta content="Premium Quality and Responsive UI for Dashboard." property="og:description">
 
-<meta property="og:image" content="http://themepixels.me/bracketplus/img/bracketplus-social.png">
-<meta property="og:image:secure_url" content="http://themepixels.me/bracketplus/img/bracketplus-social.png">
-<meta property="og:image:type" content="image/png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="600">
+<meta content="http://themepixels.me/bracketplus/img/bracketplus-social.png" property="og:image">
+<meta content="http://themepixels.me/bracketplus/img/bracketplus-social.png" property="og:image:secure_url">
+<meta content="image/png" property="og:image:type">
+<meta content="1200" property="og:image:width">
+<meta content="600" property="og:image:height">
 
 <!-- Meta -->
 <meta name="description" content="Premium Quality and Responsive UI for Dashboard.">
 <meta name="author" content="ThemePixels">
 
 
-<title>{{ $settings->first()->site_title }} - @yield('title')</title>
-
+<title>{{ $settings->site_title }} - @yield('title')</title>

@@ -26,17 +26,17 @@
         // Replace the <textarea id="editor1"> with a CKEditor 4
         // instance, using default configuration.
         window.onload = function() {
-            CKEDITOR.replace( 'short_desc', {
+            CKEDITOR.replace('short_desc', {
                 height: '6em',
                 enterMode: CKEDITOR.ENTER_BR,
                 shiftEnterMode: CKEDITOR.ENTER_P
             });
 
-            CKEDITOR.replace( 'long_desc', {
+            CKEDITOR.replace('long_desc', {
                 height: '25em',
                 enterMode: CKEDITOR.ENTER_BR,
                 shiftEnterMode: CKEDITOR.ENTER_P,
-                filebrowserUploadUrl: "{{ route('ckeditor.upload', ['_token' => csrf_token() ])}}",
+                filebrowserUploadUrl: "{{ route('ckeditor.upload', ['_token' => csrf_token()]) }}",
                 filebrowserUploadMethod: 'form'
             });
         };
@@ -61,7 +61,9 @@
             }
         });
         // Select2
-        $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
+        $('.dataTables_length select').select2({
+            minimumResultsForSearch: Infinity
+        });
     </script>
 
     {{-- Toastr --}}
@@ -87,82 +89,93 @@
             "hideMethod": "fadeOut"
         }
         @if (Session::has('message'))
-            var type="{{ Session::get('alert-type', 'info') }}";
+            var type = "{{ Session::get('alert-type', 'info') }}";
 
-            switch(type){
+            switch (type) {
                 case 'info':
                     toastr.info("{{ Session::get('message') }}");
-                break;
+                    break;
                 case 'success':
                     toastr.success("{{ Session::get('message') }}");
-                break;
+                    break;
                 case 'warning':
                     toastr.warning("{{ Session::get('message') }}");
-                break;
+                    break;
                 case 'error':
                     toastr.error("{{ Session::get('message') }}");
-                break;
+                    break;
             }
         @endif
     </script>
-    
+
     <script>
-        $(function(){
+        $(function() {
 
-        'use strict';
+            'use strict';
 
-        $( '.inputfile' ).each( function()
-        {
-        var $input	 = $( this ),
-            $label	 = $input.next( 'label' ),
-            labelVal = $label.html();
+            $('.inputfile').each(function() {
+                var $input = $(this),
+                    $label = $input.next('label'),
+                    labelVal = $label.html();
 
-        $input.on( 'change', function( e )
-        {
-            var fileName = '';
+                $input.on('change', function(e) {
+                    var fileName = '';
 
-            if( this.files && this.files.length > 1 )
-            fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
-            else if( e.target.value )
-            fileName = e.target.value.split( '\\' ).pop();
+                    if (this.files && this.files.length > 1)
+                        fileName = (this.getAttribute(
+                                'data-multiple-caption') ||
+                            '').replace(
+                            '{count}', this.files.length);
+                    else if (e.target.value)
+                        fileName = e.target.value.split(
+                            '\\').pop();
 
-            if( fileName )
-            $label.find( 'span' ).html( fileName );
-            else
-            $label.html( labelVal );
+                    if (fileName)
+                        $label.find('span').html(fileName);
+                    else
+                        $label.html(labelVal);
+                });
+
+                // Firefox bug fix
+                $input
+                    .on('focus', function() {
+                        $input.addClass('has-focus');
+                    })
+                    .on('blur', function() {
+                        $input.removeClass('has-focus');
+                    });
+            });
+
         });
-
-        // Firefox bug fix
-        $input
-        .on( 'focus', function(){ $input.addClass( 'has-focus' ); })
-        .on( 'blur', function(){ $input.removeClass( 'has-focus' ); });
-        });
-
-    });
-    
     </script>
     <script>
-        $(function(){
+        $(function() {
             'use strict'
 
             // FOR DEMO ONLY
             // menu collapsed by default during first page load or refresh with screen
             // having a size between 992px and 1299px. This is intended on this page only
             // for better viewing of widgets demo.
-            $(window).resize(function(){
+            $(window).resize(function() {
                 minimizeMenu();
             });
 
             minimizeMenu();
 
             function minimizeMenu() {
-                if(window.matchMedia('(min-width: 992px)').matches && window.matchMedia('(max-width: 1299px)').matches) {
+                if (window.matchMedia('(min-width: 992px)').matches &&
+                    window.matchMedia('(max-width: 1299px)')
+                    .matches) {
                     // show only the icons and hide left menu label by default
-                    $('.menu-item-label,.menu-item-arrow').addClass('op-lg-0-force d-lg-none');
+                    $('.menu-item-label,.menu-item-arrow').addClass(
+                        'op-lg-0-force d-lg-none');
                     $('body').addClass('collapsed-menu');
                     $('.show-sub + .br-menu-sub').slideUp();
-                } else if(window.matchMedia('(min-width: 1300px)').matches && !$('body').hasClass('collapsed-menu')) {
-                    $('.menu-item-label,.menu-item-arrow').removeClass('op-lg-0-force d-lg-none');
+                } else if (window.matchMedia('(min-width: 1300px)')
+                    .matches && !$('body').hasClass(
+                        'collapsed-menu')) {
+                    $('.menu-item-label,.menu-item-arrow').removeClass(
+                        'op-lg-0-force d-lg-none');
                     $('body').removeClass('collapsed-menu');
                     $('.show-sub + .br-menu-sub').slideDown();
                 }

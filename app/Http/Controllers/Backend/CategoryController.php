@@ -22,17 +22,17 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        $category = new Category();
-        $category->name         = $request->name;
-        $category->slug         = Str::slug($request->name);
-        $category->description  = $request->description;
-        $category->is_featured  = $request->is_featured;
-        $category->status       = $request->status;
+        $category              = new Category();
+        $category->name        = $request->name;
+        $category->slug        = Str::slug($request->name);
+        $category->description = $request->description;
+        $category->is_featured = $request->is_featured;
+        $category->status      = $request->status;
 
-        $notification = array(
-            'alert-type'    => 'success',
-            'message'       => 'New Category Added!',
-        );
+        $notification = [
+            'alert-type' => 'success',
+            'message'    => 'New Category Added!',
+        ];
 
         $category->save();
         return redirect()->route('category.manage')->with($notification);
@@ -41,26 +41,26 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::find($id);
-        if(!is_null($category)){
+        if (!is_null($category)) {
             return view('backend.pages.category.edit', compact('category'));
-        }else{
+        } else {
             //404
         }
     }
 
     public function update(Request $request, $id)
     {
-        $category = Category::find($id);
-        $category->name         = $request->name;
-        $category->slug         = Str::slug($request->name);
-        $category->description  = $request->description;
-        $category->is_featured  = $request->is_featured;
-        $category->status       = $request->status;
-        
-        $notification = array(
-            'alert-type'    => 'success',
-            'message'       => 'Category Updated Successfully!',
-        );
+        $category              = Category::find($id);
+        $category->name        = $request->name;
+        $category->slug        = Str::slug($request->name);
+        $category->description = $request->description;
+        $category->is_featured = $request->is_featured;
+        $category->status      = $request->status;
+
+        $notification = [
+            'alert-type' => 'success',
+            'message'    => 'Category Updated Successfully!',
+        ];
 
         $category->save();
         return redirect()->route('category.manage')->with($notification);
@@ -69,14 +69,14 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category = Category::find($id);
-        if(!is_null($category)){
-            $notification = array(
-                'alert-type'    => 'error',
-                'message'       => 'Category Has Been Removed!',
-            );
+        if (!is_null($category)) {
+            $notification = [
+                'alert-type' => 'error',
+                'message'    => 'Category Has Been Removed!',
+            ];
             $category->delete();
             return redirect()->route('category.manage')->with($notification);
-        }else{
+        } else {
             //404
         }
     }
