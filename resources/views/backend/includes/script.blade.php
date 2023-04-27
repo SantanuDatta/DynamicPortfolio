@@ -20,6 +20,7 @@
     <script src="{{ asset('backend/js/map.shiftworker.js') }}"></script>
     <script src="{{ asset('backend/js/ResizeSensor.js') }}"></script>
     <script src="{{ asset('backend/js/dashboard.js') }}"></script>
+    <script src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script>
 
     <script src="https://cdn.ckeditor.com/4.20.1/standard/ckeditor.js"></script>
     <script>
@@ -36,8 +37,8 @@
                 height: '25em',
                 enterMode: CKEDITOR.ENTER_BR,
                 shiftEnterMode: CKEDITOR.ENTER_P,
-                filebrowserUploadUrl: "{{ route('ckeditor.upload', ['_token' => csrf_token()]) }}",
-                filebrowserUploadMethod: 'form'
+                filebrowserImageBrowseUrl: '/file-manager/ckeditor',
+                filebrowserUploadMethod: 'form',
             });
         };
         // Datepicker

@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.1.0",
+        "alexusmai/laravel-file-manager": "^3.0",
         "ckeditor/ckeditor": "^4.21",
         "guzzlehttp/guzzle": "^7.5.1",
         "intervention/image": "^2.7.2",

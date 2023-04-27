@@ -62,7 +62,6 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/manage', [PortfolioController::class, 'index'])->name('portfolio.manage');
             Route::get('/create', [PortfolioController::class, 'create'])->name('portfolio.create');
             Route::post('/store', [PortfolioController::class, 'store'])->name('portfolio.store');
-            Route::post('/upload-image', [PortfolioController::class, 'upload'])->name('ckeditor.upload');
             Route::get('/edit/{id}', [PortfolioController::class, 'edit'])->name('portfolio.edit');
             Route::post('/update/{id}', [PortfolioController::class, 'update'])->name('portfolio.update');
             Route::post('/destroy/{id}', [PortfolioController::class, 'destroy'])->name('portfolio.destroy');

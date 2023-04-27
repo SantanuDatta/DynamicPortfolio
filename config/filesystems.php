@@ -44,6 +44,12 @@ return [
             'throw' => false,
         ],
 
+        'portfolio' => [
+            'driver' => 'local',
+            'root' => public_path('backend/img/portfolio/'),
+            'url' => env('APP_URL') . '/backend/img/portfolio/',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

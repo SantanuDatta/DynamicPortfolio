@@ -18,3 +18,4 @@
 <link href="{{ asset('backend/css/bracket.css') }}" rel="stylesheet">
 <!-- Custom CSS -->
 <link href="{{ asset('backend/css/custom.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('vendor/file-manager/css/file-manager.css') }}">

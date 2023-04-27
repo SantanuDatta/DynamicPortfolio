@@ -55,26 +55,6 @@ class PortfolioController extends Controller
         return redirect()->route('portfolio.manage')->with($notification);
     }
 
-    public function upload(Request $request)
-    {
-        $request->validate([
-            'upload' => 'image',
-        ]);
-        if ($request->hasFile('upload')) {
-            $originName = $request->file('upload')->getClientOriginalName();
-            $fileName   = pathinfo($originName, PATHINFO_FILENAME);
-            $extension  = $request->file('upload')->getClientOriginalExtension();
-            $fileName   = $fileName . '_' . time() . '.' . $extension;
-            $request->file('upload')->move(public_path('backend/img/portfolio'), $fileName);
-            $CKEditorFuncNum = $request->input('CKEditorFuncNum');
-            $url             = asset('backend/img/portfolio/' . $fileName);
-            $msg             = 'Image uploaded successfully';
-            $response        = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
-            @header('Content-type: text/html; charset=utf-8');
-            echo $response;
-        }
-    }
-
     public function edit($id)
     {
         $portfolio = Portfolio::find($id);
