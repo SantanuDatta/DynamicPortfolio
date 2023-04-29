@@ -14,13 +14,13 @@ class PortfolioController extends Controller
 {
     public function index()
     {
-        $portfolios = Portfolio::with('category')->orderBy('name', 'asc')->get();
+        $portfolios = Portfolio::with('category')->asc('name')->get();
         return view('backend.pages.portfolio.manage', compact('portfolios'));
     }
 
     public function create()
     {
-        $categories = Category::orderBy('name', 'asc')->get();
+        $categories = Category::asc('name')->get();
         return view('backend.pages.portfolio.create', compact('categories'));
     }
 
@@ -46,20 +46,16 @@ class PortfolioController extends Controller
             $portfolio->image = $img;
         }
 
-        $notification = [
-            'alert-type' => 'success',
-            'message'    => 'New Portfolio Added!',
-        ];
-
         $portfolio->save();
-        return redirect()->route('portfolio.manage')->with($notification);
+        flash('success', 'New Portfolio Added!');
+        return redirect()->route('portfolio.manage');
     }
 
     public function edit($id)
     {
         $portfolio = Portfolio::find($id);
         if (!is_null($portfolio)) {
-            $categories = Category::orderBy('name', 'asc')->get();
+            $categories = Category::asc('name')->get();
             return view('backend.pages.portfolio.edit', compact('portfolio', 'categories'));
         } else {
             //404
@@ -91,13 +87,9 @@ class PortfolioController extends Controller
             $portfolio->image = $img;
         }
 
-        $notification = [
-            'alert-type' => 'success',
-            'message'    => 'Portfolio Updated!',
-        ];
-
         $portfolio->save();
-        return redirect()->route('portfolio.manage')->with($notification);
+        flash('success', 'Portfolio Updated!');
+        return redirect()->route('portfolio.manage');
     }
 
     public function destroy($id)
@@ -107,12 +99,10 @@ class PortfolioController extends Controller
             if (File::exists('backend/img/portfolio/' . $portfolio->imag)) {
                 File::delete('backend/img/portfolio/' . $portfolio->image);
             }
-            $notification = [
-                'alert-type' => 'error',
-                'message'    => 'Portfolio Removed!',
-            ];
+
             $portfolio->delete();
-            return redirect()->route('portfolio.manage')->with($notification);
+            flash('error', 'Portfolio Removed!');
+            return redirect()->route('portfolio.manage');
 
         } else {
             //404

@@ -18,4 +18,9 @@ class Skill extends Model
         'name',
         'skill_rate',
     ];
+
+    public function scopeAsc($query, $column)
+    {
+        return $query->orderBy($column, 'asc');
+    }
 }

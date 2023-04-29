@@ -3,15 +3,14 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Category\CategoryRequest;
 use App\Models\Category;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::orderBy('name', 'asc')->get();
+        $categories = Category::asc('name')->get();
         return view('backend.pages.category.manage', compact('categories'));
     }
 
@@ -20,64 +19,38 @@ class CategoryController extends Controller
         return view('backend.pages.category.create');
     }
 
-    public function store(Request $request)
+    public function store(CategoryRequest $request, Category $category)
     {
-        $category              = new Category();
-        $category->name        = $request->name;
-        $category->slug        = Str::slug($request->name);
-        $category->description = $request->description;
-        $category->is_featured = $request->is_featured;
-        $category->status      = $request->status;
-
-        $notification = [
-            'alert-type' => 'success',
-            'message'    => 'New Category Added!',
-        ];
+        $category = Category::create($request->validated());
 
         $category->save();
-        return redirect()->route('category.manage')->with($notification);
+        flash('success', 'New Category Added!');
+        return redirect()->route('category.manage');
     }
 
-    public function edit($id)
+    public function edit(Category $category)
     {
-        $category = Category::find($id);
-        if (!is_null($category)) {
-            return view('backend.pages.category.edit', compact('category'));
-        } else {
-            //404
-        }
+        $category = $category;
+        return view('backend.pages.category.edit', compact('category'));
     }
 
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, Category $category)
     {
-        $category              = Category::find($id);
-        $category->name        = $request->name;
-        $category->slug        = Str::slug($request->name);
-        $category->description = $request->description;
-        $category->is_featured = $request->is_featured;
-        $category->status      = $request->status;
-
-        $notification = [
-            'alert-type' => 'success',
-            'message'    => 'Category Updated Successfully!',
-        ];
+        $category = $category;
+        $category->update($request->validated());
 
         $category->save();
-        return redirect()->route('category.manage')->with($notification);
+        flash('success', 'Category Updated Successfully!');
+        return redirect()->route('category.manage');
     }
 
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        $category = Category::find($id);
-        if (!is_null($category)) {
-            $notification = [
-                'alert-type' => 'error',
-                'message'    => 'Category Has Been Removed!',
-            ];
-            $category->delete();
-            return redirect()->route('category.manage')->with($notification);
-        } else {
-            //404
-        }
+        $category     = $category;
+
+        $category->delete();
+        flash('error', 'Category Deleted Successfully');
+        return redirect()->route('category.manage');
+
     }
 }

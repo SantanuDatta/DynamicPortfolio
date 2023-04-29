@@ -61,7 +61,7 @@
                                                 <div class="btn-group action-bar" role="group">
                                                     <a data-toggle="modal" data-target="#description-{{ $category->id }}"
                                                         href=""><i class="fas fa-eye"></i></a>
-                                                    <a href="{{ route('category.edit', $category->id) }}"><i
+                                                    <a href="{{ route('category.edit', $category) }}"><i
                                                             class="fas fa-edit"></i></a>
                                                     <a data-toggle="modal" data-target="#softdelete-{{ $category->id }}"
                                                         href=""><i class="fas fa-trash"></i></a>
@@ -127,7 +127,7 @@
                                                                 <button class="btn btn-secondary btn-sm"
                                                                     data-dismiss="modal" type="button">Close</button>
                                                                 <form
-                                                                    action="{{ route('category.destroy', $category->id) }}"
+                                                                    action="{{ route('category.destroy', $category) }}"
                                                                     method="POST">
                                                                     @csrf
                                                                     <button class="btn btn-danger btn-sm" name="delete"

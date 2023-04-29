@@ -27,6 +27,9 @@
                                         <label for="">Category Name<span class="tx-danger">*</span></label>
                                         <input class="form-control" name="name" type="text"
                                             placeholder="Please Input Category Name">
+                                        @error('name')
+                                            <div class="text text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <label for="">Category Short
@@ -40,13 +43,13 @@
                                             Category?</label><br>
                                         <div class="form-check-inline">
                                             <label class="rdiobox rdiobox-info">
-                                                <input name="is_featured" type="radio" value="1">
+                                                <input name="is_featured" type="radio" value="1" @checked(old('is_featured') == 1)>
                                                 <span>Enable</span>
                                             </label>
                                         </div>
                                         <div class="form-check-inline">
                                             <label class="rdiobox rdiobox-info">
-                                                <input name="is_featured" type="radio" value="0" checked>
+                                                <input name="is_featured" type="radio" value="0" @checked(old('is_featured') == 0)>
                                                 <span>Disable</span>
                                             </label>
                                         </div>
@@ -56,9 +59,12 @@
                                         <select class="form-control" id="" name="status">
                                             <option value="" hidden>Please
                                                 Select Status</option>
-                                            <option value="1">Active</option>
-                                            <option value="0">Inactive</option>
+                                            <option value="1" @selected(old('status') == 1)>Active</option>
+                                            <option value="0" @selected(old('status') == 0)>Inactive</option>
                                         </select>
+                                        @error('status')
+                                            <div class="text text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <button class="btn btn-teal float-right" name="addCategory" type="submit">Add

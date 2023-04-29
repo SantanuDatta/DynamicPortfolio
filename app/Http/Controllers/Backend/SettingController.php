@@ -36,11 +36,8 @@ class SettingController extends Controller
             $setting->favicon = $faviconImg;
         }
 
-        $notification = [
-            'alert-type' => 'success',
-            'message'    => 'Settings Have Been Updated!',
-        ];
         $setting->save();
-        return redirect()->back()->with($notification);
+        flash('success', 'Settings Have Been Updated!');
+        return redirect()->back();
     }
 }

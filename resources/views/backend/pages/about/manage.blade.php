@@ -19,41 +19,53 @@
                         Manage Summary
                     </div><!-- card-header -->
                     <div class="card-body bd bd-t-0 rounded-bottom">
-                        @foreach ($abouts as $about)
-                            <form action="{{ route('about.update', $about->id) }}" method="POST">
-                                @csrf
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label for="">Name</label>
-                                            <input class="form-control" type="text" value="{{ $about->user->name }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">Describe
-                                                Yourself</label>
-                                            <textarea class="form-control" id="short_desc" name="description">{{ $about->description }}</textarea>
-                                        </div>
+                        <form action="{{ route('about.update', $about) }}" method="POST">
+                            @csrf
+                            @method('PATCH');
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="">Name</label>
+                                        <input class="form-control" name="name" type="text"
+                                            value="{{ $about->user->name }}">
+                                        @error('name')
+                                            <div class="text text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label for="">Your Email</label>
-                                            <input class="form-control" name="email" type="email"
-                                                value="{{ $about->email }}" placeholder="Your Email Address">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">Phone</label>
-                                            <input class="form-control" name="phone" type="text"
-                                                value="{{ $about->phone }}" placeholder="Your Phone Number">
-                                        </div>
-                                        <div class="form-group">
-                                            <input name="user_id" type="hidden" value="{{ $about->user_id }}">
-                                            <button class="btn btn-teal float-right" name="summary" type="submit">Update
-                                                Summary</button>
-                                        </div>
+                                    <div class="form-group">
+                                        <label for="">Describe
+                                            Yourself</label>
+                                        <textarea class="form-control" id="short_desc" name="description">{{ $about->description }}</textarea>
+                                        @error('description')
+                                            <div class="text text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
-                            </form>
-                        @endforeach
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="">Your Email</label>
+                                        <input class="form-control" name="email" type="email"
+                                            value="{{ $about->email }}" placeholder="Your Email Address">
+                                        @error('email')
+                                            <div class="text text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Phone</label>
+                                        <input class="form-control" name="phone" type="text"
+                                            value="{{ $about->phone }}" placeholder="Your Phone Number">
+                                        @error('phone')
+                                            <div class="text text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <input name="user_id" type="hidden" value="{{ $about->user_id }}">
+                                        <button class="btn btn-teal float-right" name="summary" type="submit">Update
+                                            Summary</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div><!-- card-body -->
                 </div><!-- card -->
             </div>

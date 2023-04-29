@@ -44,11 +44,8 @@ class UserController extends Controller
             $user->pdf = $pdf;
         }
 
-        $notification = [
-            'alert-type' => 'success',
-            'message'    => 'Updated Successfully!',
-        ];
         $user->save();
-        return back()->with($notification);
+        flash('success', 'Updated Successfully!');
+        return back();
     }
 }

@@ -21,6 +21,11 @@ class Category extends Model
         'status',
     ];
 
+    public function scopeAsc($query, $column)
+    {
+        return $query->orderBy($column, 'asc');
+    }
+
     public function portfolio()
     {
         return $this->hasMany(Portfolio::class, 'category_id', 'id');

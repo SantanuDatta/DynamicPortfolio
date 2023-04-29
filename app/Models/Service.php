@@ -19,4 +19,9 @@ class Service extends Model
         'description',
         'image_link',
     ];
+
+    public function scopeAsc($query, $column)
+    {
+        return $query->orderBy($column, 'asc');
+    }
 }

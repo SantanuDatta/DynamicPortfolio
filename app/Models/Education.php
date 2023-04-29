@@ -21,4 +21,9 @@ class Education extends Model
         'start_date',
         'end_date',
     ];
+
+    public function scopeAsc($query, $column)
+    {
+        return $query->orderBy($column, 'asc');
+    }
 }

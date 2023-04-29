@@ -10,7 +10,7 @@ class SkillController extends Controller
 {
     public function index()
     {
-        $skills = Skill::orderBy('id', 'asc')->get();
+        $skills = Skill::asc('id')->get();
         return view('backend.pages.skill.manage', compact('skills'));
     }
 
@@ -26,13 +26,9 @@ class SkillController extends Controller
         $skill->name       = $request->name;
         $skill->skill_rate = $request->skill_rate;
 
-        $notification = [
-            'alert-type' => 'success',
-            'message'    => 'Skill Has Been Added!',
-        ];
-
         $skill->save();
-        return redirect()->route('skill.manage')->with($notification);
+        flash('success', 'Skill Has Been Added!');
+        return redirect()->route('skill.manage');
     }
 
     public function edit($id)
@@ -51,13 +47,9 @@ class SkillController extends Controller
         $skill->name       = $request->name;
         $skill->skill_rate = $request->skill_rate;
 
-        $notification = [
-            'alert-type' => 'success',
-            'message'    => 'Skill Updated Successfully!',
-        ];
-
         $skill->save();
-        return redirect()->route('skill.manage')->with($notification);
+        flash('success', 'Skill Updated Successfully!');
+        return redirect()->route('skill.manage');
     }
 
     public function destroy($id)
@@ -65,13 +57,9 @@ class SkillController extends Controller
         $skill = Skill::find($id);
         if (!is_null($skill)) {
 
-            $notification = [
-                'alert-type' => 'error',
-                'message'    => 'Skill Removed Successfully!',
-            ];
-
             $skill->delete();
-            return redirect()->route('skill.manage')->with($notification);
+            flash('error', 'Skill Removed Successfully!');
+            return redirect()->route('skill.manage');
         } else {
             //404
         }

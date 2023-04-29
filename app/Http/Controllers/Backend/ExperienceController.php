@@ -10,7 +10,7 @@ class ExperienceController extends Controller
 {
     public function index()
     {
-        $experiences = Experience::orderBy('id', 'asc')->get();
+        $experiences = Experience::asc('id')->get();
         return view('backend.pages.experience.manage', compact('experiences'));
     }
 
@@ -29,13 +29,9 @@ class ExperienceController extends Controller
         $experience->start_date   = $request->start_date;
         $experience->end_date     = $request->end_date;
 
-        $notification = [
-            'alert-type' => 'success',
-            'message'    => 'New Experience Added!',
-        ];
-
         $experience->save();
-        return redirect()->route('experience.manage')->with($notification);
+        flash('success', 'New Experience Added!');
+        return redirect()->route('experience.manage');
     }
 
     public function edit($id)
@@ -57,25 +53,18 @@ class ExperienceController extends Controller
         $experience->start_date   = $request->start_date;
         $experience->end_date     = $request->end_date;
 
-        $notification = [
-            'alert-type' => 'success',
-            'message'    => 'Experience Updated!',
-        ];
-
         $experience->save();
-        return redirect()->route('experience.manage')->with($notification);
+        flash('success', 'Experience Updated!');
+        return redirect()->route('experience.manage');
     }
 
     public function destroy($id)
     {
         $experience = Experience::find($id);
         if (!is_null($experience)) {
-            $notification = [
-                'alert-type' => 'error',
-                'message'    => 'Experience Removed Successfully!',
-            ];
             $experience->delete();
-            return redirect()->route('experience.manage')->with($notification);
+            flash('error', 'Experience Removed Successfully!');
+            return redirect()->route('experience.manage');
         } else {
             //404
         }

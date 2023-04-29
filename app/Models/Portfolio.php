@@ -27,6 +27,11 @@ class Portfolio extends Model
         'status',
     ];
 
+    public function scopeAsc($query, $column)
+    {
+        return $query->orderBy($column, 'asc');
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);

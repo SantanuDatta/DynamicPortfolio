@@ -19,4 +19,9 @@ class Certificate extends Model
         'degree',
         'date',
     ];
+
+    public function scopeAsc($query, $column)
+    {
+        return $query->orderBy($column, 'asc');
+    }
 }

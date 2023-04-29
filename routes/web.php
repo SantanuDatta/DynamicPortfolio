@@ -52,9 +52,9 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/manage', [CategoryController::class, 'index'])->name('category.manage');
             Route::get('/create', [CategoryController::class, 'create'])->name('category.create');
             Route::post('/store', [CategoryController::class, 'store'])->name('category.store');
-            Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
-            Route::post('/update/{id}', [CategoryController::class, 'update'])->name('category.update');
-            Route::post('/destroy/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
+            Route::get('/edit/{category}', [CategoryController::class, 'edit'])->name('category.edit');
+            Route::patch('/update/{category}', [CategoryController::class, 'update'])->name('category.update');
+            Route::post('/destroy/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
         });
 
         //Portfolio Route
@@ -70,7 +70,7 @@ Route::middleware(['auth'])->group(function () {
         //About Route
         Route::group(['prefix' => '/about'], function () {
             Route::get('/manage', [AboutController::class, 'index'])->name('about.manage');
-            Route::post('/update/{id}', [AboutController::class, 'update'])->name('about.update');
+            Route::patch('/update/{about}', [AboutController::class, 'update'])->name('about.update');
         });
 
         //Experience Route

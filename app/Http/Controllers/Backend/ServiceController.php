@@ -10,7 +10,7 @@ class ServiceController extends Controller
 {
     public function index()
     {
-        $services = Service::orderBy('id', 'asc')->get();
+        $services = Service::asc('id')->get();
         return view('backend.pages.service.manage', compact('services'));
     }
 
@@ -27,13 +27,9 @@ class ServiceController extends Controller
         $service->description = $request->description;
         $service->image_link  = $request->image_link;
 
-        $notification = [
-            'alert-type' => 'success',
-            'message'    => 'Service Has Been Added!',
-        ];
-
         $service->save();
-        return redirect()->route('service.manage')->with($notification);
+        flash('success', 'Service Has Been Added!');
+        return redirect()->route('service.manage');
     }
 
     public function edit($id)
@@ -53,13 +49,9 @@ class ServiceController extends Controller
         $service->description = $request->description;
         $service->image_link  = $request->image_link;
 
-        $notification = [
-            'alert-type' => 'success',
-            'message'    => 'Service Updated Successfully!',
-        ];
-
         $service->save();
-        return redirect()->route('service.manage')->with($notification);
+        flash('success', 'Service Updated Successfully!');
+        return redirect()->route('service.manage');
     }
 
     public function destroy($id)
@@ -67,13 +59,9 @@ class ServiceController extends Controller
         $service = Service::find($id);
         if (!is_null($service)) {
 
-            $notification = [
-                'alert-type' => 'error',
-                'message'    => 'Service Removed Successfully!',
-            ];
-
             $service->delete();
-            return redirect()->route('service.manage')->with($notification);
+            flash('error', 'Service Removed Successfully!');
+            return redirect()->route('service.manage');
         } else {
             //404
         }

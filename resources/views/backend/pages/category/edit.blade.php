@@ -22,12 +22,16 @@
                         <form action="{{ route('category.update', $category->id) }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
+                            @method('PATCH')
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="">Category Name<span class="tx-danger">*</span></label>
                                         <input class="form-control form-control-dark" name="name" type="text"
                                             value="{{ $category->name }}" placeholder="Please Input Category Name">
+                                        @error('name')
+                                            <div class="text text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <label for="">Category Short
@@ -42,14 +46,14 @@
                                         <div class="form-check-inline">
                                             <label class="rdiobox rdiobox-info">
                                                 <input name="is_featured" type="radio" value="1"
-                                                    @if ($category->is_featured == 1) checked @endif>
+                                                    @checked($category->is_featured == 1)>
                                                 <span>Enable</span>
                                             </label>
                                         </div>
                                         <div class="form-check-inline">
                                             <label class="rdiobox rdiobox-info">
                                                 <input name="is_featured" type="radio" value="0"
-                                                    @if ($category->is_featured == 0) checked @endif>
+                                                    @checked($category->is_featured == 0)>
                                                 <span>Disable</span>
                                             </label>
                                         </div>
@@ -59,12 +63,15 @@
                                         <select class="form-control form-control-dark" id="" name="status">
                                             <option value="" hidden>Please
                                                 Select Status</option>
-                                            <option value="1" @if ($category->status == 1) selected @endif>
+                                            <option value="1" @selected($category->status == 1)>
                                                 Active
                                             </option>
-                                            <option value="0" @if ($category->status == 0) selected @endif>
+                                            <option value="0" @selected($category->status == 0)>
                                                 Inactive</option>
                                         </select>
+                                        @error('status')
+                                            <div class="text text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <button class="btn btn-teal float-right" name="editCategory" type="submit">Edit

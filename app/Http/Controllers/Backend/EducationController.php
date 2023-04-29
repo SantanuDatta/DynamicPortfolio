@@ -10,7 +10,7 @@ class EducationController extends Controller
 {
     public function index()
     {
-        $educations = Education::orderBy('id', 'asc')->get();
+        $educations = Education::asc('id')->get();
         return view('backend.pages.education.manage', compact('educations'));
     }
 
@@ -29,13 +29,9 @@ class EducationController extends Controller
         $education->start_date = $request->start_date;
         $education->end_date   = $request->end_date;
 
-        $notification = [
-            'alert-type' => 'success',
-            'message'    => 'New Education Added!',
-        ];
-
         $education->save();
-        return redirect()->route('education.manage')->with($notification);
+        flash('success', 'New Education Added!');
+        return redirect()->route('education.manage');
     }
 
     public function edit($id)
@@ -57,25 +53,18 @@ class EducationController extends Controller
         $education->start_date = $request->start_date;
         $education->end_date   = $request->end_date;
 
-        $notification = [
-            'alert-type' => 'success',
-            'message'    => 'Education Updated!',
-        ];
-
         $education->save();
-        return redirect()->route('education.manage')->with($notification);
+        flash('success', 'Education Updated!');
+        return redirect()->route('education.manage');
     }
 
     public function destroy($id)
     {
         $education = Education::find($id);
         if (!is_null($education)) {
-            $notification = [
-                'alert-type' => 'error',
-                'message'    => 'Education Removed Successfully!',
-            ];
             $education->delete();
-            return redirect()->route('education.manage')->with($notification);
+            flash('error', 'Education Removed Successfully!');
+            return redirect()->route('education.manage');
         } else {
             //404
         }
