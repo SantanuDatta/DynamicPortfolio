@@ -3,7 +3,7 @@
 
 <head>
     <!-- Metas -->
-    @include('frontend.includes.header')
+    @include('frontend.includes.header', ['title' => $portfolio->name])
     <!-- Css -->
     @include('frontend.includes.css')
 </head>
@@ -20,7 +20,7 @@
         <!--Alternate styles for demo purposes only-->
         @include('frontend.includes.wrapper')
         <div class="blurred-content"></div>
-        <section class="project spacer-xlg">
+        <section class="project spacer-lg">
             <div class="bg-dark radius-2 padding-dy container shadow">
                 <div class="row mb-5">
                     <div class="col">
@@ -55,27 +55,18 @@
                             <hr class="divider divider-md divider-center float-left mt-5 mb-5">
                         </div>
                         <ul class="list-inline font-size-15 w-100 float-left">
-                            @if (!is_null($portfolio->job))
-                                <li>Job :
-                                    <strong class="font-weight-600 text-alt">{{ $portfolio->job }}</strong>
-                                </li>
-                            @endif
-                            @if (!is_null($portfolio->client))
-                                <li>Client :
-                                    <strong class="font-weight-600 text-alt">{{ $portfolio->client }}</strong>
-                                </li>
-                            @endif
-                            @if (!is_null($portfolio->company))
-                                <li>Company :
-                                    <strong class="font-weight-600 text-alt">{{ $portfolio->company }}</strong>
-                                </li>
-                            @endif
-                            @if (!is_null($portfolio->date))
-                                <li>Year :
-                                    <strong
-                                        class="font-weight-600 text-alt">{{ Carbon\Carbon::parse($portfolio->date)->format('M, Y') }}</strong>
-                                </li>
-                            @endif
+                            @foreach ([
+                                    'Job' => $portfolio->job,
+                                    'Client' => $portfolio->client,
+                                    'Company' => $portfolio->company,
+                                    'Year' => Carbon\Carbon::parse($portfolio->date)->format('M, Y'),
+                                ] as $label => $value)
+                                @if (!is_null($value))
+                                    <li>{{ $label }} :
+                                        <strong class="font-weight-600 text-alt">{{ $value }}</strong>
+                                    </li>
+                                @endif
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -122,8 +113,7 @@
                                 </div>
                                 <div class="media-body">
                                     <span class="text-alt font-size-13 font-weight-600 text-uppercase">View
-                                        project
-                                        online</span>
+                                        Project Online</span>
                                 </div>
                             </div>
                         </a>

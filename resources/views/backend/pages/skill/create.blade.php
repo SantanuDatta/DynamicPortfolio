@@ -19,31 +19,38 @@
                         Add New Skill
                     </div><!-- card-header -->
                     <div class="card-body bd bd-t-0 rounded-bottom">
-                        <form action="{{ route('skill.store') }}" method="POST">
+                        <form action="{{ route('skill.store') }}" method="POST" novalidate>
                             @csrf
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="">Name<span
-                                                class="tx-danger">*</span></label>
-                                        <input class="form-control" name="name" type="text"
+                                        <label for="">Name<span class="tx-danger">*</span></label>
+                                        <input class="form-control @error('name') is-invalid @enderror" name="name"
+                                            type="text" value="{{ old('name') }}"
                                             placeholder="Id Of The Degree You Have Got?">
+                                        @error('name')
+                                            <span class="tx-danger"> {{ $message }} </span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="">Skill Rate</label>
                                         <div class="input-group">
-                                            <input class="form-control" name="skill_rate" type="number"
+                                            <input class="form-control @error('skill_rate') is-invalid @enderror"
+                                                name="skill_rate" type="number" value="{{ old('skill_rate') }}"
                                                 placeholder="Rate Your Skills">
                                             <div class="input-group-append">
                                                 <span class="input-group-text">%</span>
                                             </div>
                                         </div>
+                                        @error('skill_rate')
+                                            <span class="tx-danger"> {{ $message }} </span>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
-                                        <button class="btn btn-teal float-right" name="addSkill"
-                                            type="submit">Add Skill</button>
+                                        <button class="btn btn-teal float-right" name="addSkill" type="submit">Add
+                                            Skill</button>
                                     </div>
                                 </div>
                             </div>

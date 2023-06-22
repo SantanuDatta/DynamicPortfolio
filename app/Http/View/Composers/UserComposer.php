@@ -10,7 +10,7 @@ class UserComposer
 {
     public function compose(View $view)
     {
-        $users = Cache::remember('users', now()->addDay(), function () {
+        $users = Cache::remember('users', now()->addDays(7), function () {
             return User::first();
         });
         $view->with('users', $users);

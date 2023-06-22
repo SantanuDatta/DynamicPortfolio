@@ -56,7 +56,7 @@
                                                 <div class="btn-group action-bar" role="group">
                                                     <a data-toggle="modal" data-target="#description-{{ $portfolio->id }}"
                                                         href=""><i class="fas fa-eye"></i></a>
-                                                    <a href="{{ route('portfolio.edit', $portfolio->id) }}"><i
+                                                    <a href="{{ route('portfolio.edit', $portfolio) }}"><i
                                                             class="fas fa-edit"></i></a>
                                                     <a data-toggle="modal" data-target="#softdelete-{{ $portfolio->id }}"
                                                         href=""><i class="fas fa-trash"></i></a>
@@ -116,9 +116,10 @@
                                                                 <button class="btn btn-secondary btn-sm"
                                                                     data-dismiss="modal" type="button">Close</button>
                                                                 <form
-                                                                    action="{{ route('portfolio.destroy', $portfolio->id) }}"
+                                                                    action="{{ route('portfolio.destroy', $portfolio) }}"
                                                                     method="POST">
                                                                     @csrf
+                                                                    @method('DELETE')
                                                                     <button class="btn btn-danger btn-sm" name="delete"
                                                                         type="submit">Delete
                                                                         Portfolio</button>

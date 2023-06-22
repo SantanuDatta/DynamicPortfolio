@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('certificates', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('about_id');
+            $table->id()->index();
+            $table->integer('about_id')->default(1);
             $table->string('c_id');
             $table->string('degree');
             $table->text('date');

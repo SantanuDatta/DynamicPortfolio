@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('skills', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id()->index();
             $table->integer('about_id');
             $table->string('name');
             $table->unsignedInteger('skill_rate');

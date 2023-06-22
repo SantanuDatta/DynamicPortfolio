@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Certificate\CertificateRequest;
 use App\Models\Certificate;
-use Illuminate\Http\Request;
 
 class CertificateController extends Controller
 {
     public function index()
     {
         $certificates = Certificate::asc('id')->get();
+
         return view('backend.pages.certificate.manage', compact('certificates'));
     }
 
@@ -19,51 +20,32 @@ class CertificateController extends Controller
         return view('backend.pages.certificate.create');
     }
 
-    public function store(Request $request)
+    public function store(CertificateRequest $request)
     {
-        $certificate           = new Certificate();
-        $certificate->about_id = 1;
-        $certificate->c_id     = $request->c_id;
-        $certificate->degree   = $request->degree;
-        $certificate->date     = $request->date;
-
-        $certificate->save();
+        $certificate = Certificate::create($request->validated());
         flash('success', 'Certificate Has Been Added!');
+
         return redirect()->route('certificate.manage');
     }
 
-    public function edit($id)
+    public function edit(Certificate $certificate)
     {
-        $certificate = Certificate::find($id);
-        if (!is_null($certificate)) {
-            return view('backend.pages.certificate.edit', compact('certificate'));
-        } else {
-            //404
-        }
+        return view('backend.pages.certificate.edit', compact('certificate'));
     }
 
-    public function update(Request $request, $id)
+    public function update(CertificateRequest $request, Certificate $certificate)
     {
-        $certificate         = Certificate::find($id);
-        $certificate->c_id   = $request->c_id;
-        $certificate->degree = $request->degree;
-        $certificate->date   = $request->date;
-
-        $certificate->save();
+        $certificate->update($request->validated());
         flash('success', 'Certificate Updated Successfully!');
+
         return redirect()->route('certificate.manage');
     }
 
-    public function destroy($id)
+    public function destroy(Certificate $certificate)
     {
-        $certificate = Certificate::find($id);
-        if (!is_null($certificate)) {
+        $certificate->delete();
+        flash('error', 'Certificate Removed Successfully!');
 
-            $certificate->delete();
-            flash('error', 'Certificate Removed Successfully!');
-            return redirect()->route('certificate.manage');
-        } else {
-            //404
-        }
+        return redirect()->route('certificate.manage');
     }
 }

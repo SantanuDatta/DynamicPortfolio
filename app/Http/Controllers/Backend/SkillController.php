@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Skill\SkillRequest;
 use App\Models\Skill;
-use Illuminate\Http\Request;
 
 class SkillController extends Controller
 {
     public function index()
     {
         $skills = Skill::asc('id')->get();
+
         return view('backend.pages.skill.manage', compact('skills'));
     }
 
@@ -19,49 +20,32 @@ class SkillController extends Controller
         return view('backend.pages.skill.create');
     }
 
-    public function store(Request $request)
+    public function store(SkillRequest $request)
     {
-        $skill             = new Skill();
-        $skill->about_id   = 1;
-        $skill->name       = $request->name;
-        $skill->skill_rate = $request->skill_rate;
-
-        $skill->save();
+        $skill = Skill::create($request->validated());
         flash('success', 'Skill Has Been Added!');
+
         return redirect()->route('skill.manage');
     }
 
-    public function edit($id)
+    public function edit(Skill $skill)
     {
-        $skill = Skill::find($id);
-        if (!is_null($skill)) {
-            return view('backend.pages.skill.edit', compact('skill'));
-        } else {
-            //404
-        }
+        return view('backend.pages.skill.edit', compact('skill'));
     }
 
-    public function update(Request $request, $id)
+    public function update(SkillRequest $request, Skill $skill)
     {
-        $skill             = Skill::find($id);
-        $skill->name       = $request->name;
-        $skill->skill_rate = $request->skill_rate;
-
-        $skill->save();
+        $skill->update($request->validated());
         flash('success', 'Skill Updated Successfully!');
+
         return redirect()->route('skill.manage');
     }
 
-    public function destroy($id)
+    public function destroy(Skill $skill)
     {
-        $skill = Skill::find($id);
-        if (!is_null($skill)) {
+        $skill->delete();
+        flash('error', 'Skill Removed Successfully!');
 
-            $skill->delete();
-            flash('error', 'Skill Removed Successfully!');
-            return redirect()->route('skill.manage');
-        } else {
-            //404
-        }
+        return redirect()->route('skill.manage');
     }
 }

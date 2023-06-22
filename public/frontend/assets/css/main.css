@@ -834,6 +834,11 @@ section,
 .spacer-xl-top {
   padding-top: 2rem;
 }
+.spacer-lg {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
 .spacer-xlg {
   padding-top: 8rem;
   padding-bottom: 8rem;

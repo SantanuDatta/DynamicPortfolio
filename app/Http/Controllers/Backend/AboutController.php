@@ -16,10 +16,8 @@ class AboutController extends Controller
 
     public function update(AboutRequest $request, About $about)
     {
-        $about = $about;
         $about->update($request->validated());
 
-        $about->save();
         flash('success', 'Updated Successfully!');
         return redirect()->back();
     }

@@ -1,5 +1,5 @@
 <!-- Favicon -->
-<link type="image/x-icon" href="{{ asset('backend/img/settings/favicon/' . $settings->first()->favicon) }}"
+<link type="image/x-icon" href="{{ asset('backend/img/settings/favicon/' . $settings->favicon) }}"
     rel="shortcut icon" />
 <!-- vendor css -->
 <link href="{{ asset('backend/lib/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet">

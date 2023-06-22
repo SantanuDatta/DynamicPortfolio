@@ -19,13 +19,14 @@
                         Add A Category
                     </div><!-- card-header -->
                     <div class="card-body bd bd-t-0 rounded-bottom">
-                        <form action="{{ route('category.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('category.store') }}" method="POST" enctype="multipart/form-data" novalidate>
                             @csrf
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="">Category Name<span class="tx-danger">*</span></label>
-                                        <input class="form-control" name="name" type="text"
+                                        <input class="form-control @error('name') is-invalid @enderror" name="name"
+                                            type="text" value="{{ old('name') }}"
                                             placeholder="Please Input Category Name">
                                         @error('name')
                                             <div class="text text-danger">{{ $message }}</div>
@@ -34,7 +35,7 @@
                                     <div class="form-group">
                                         <label for="">Category Short
                                             Description</label>
-                                        <textarea class="form-control" id="short_desc" name="description"></textarea>
+                                        <textarea class="form-control" id="short_desc" name="description">{{ old('short_desc') }}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -43,20 +44,23 @@
                                             Category?</label><br>
                                         <div class="form-check-inline">
                                             <label class="rdiobox rdiobox-info">
-                                                <input name="is_featured" type="radio" value="1" @checked(old('is_featured') == 1)>
+                                                <input name="is_featured" type="radio" value="1"
+                                                    @checked(old('is_featured') == 1)>
                                                 <span>Enable</span>
                                             </label>
                                         </div>
                                         <div class="form-check-inline">
                                             <label class="rdiobox rdiobox-info">
-                                                <input name="is_featured" type="radio" value="0" @checked(old('is_featured') == 0)>
+                                                <input name="is_featured" type="radio" value="0"
+                                                    @checked(old('is_featured') == 0)>
                                                 <span>Disable</span>
                                             </label>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="">Select A Status<span class="tx-danger">*</span></label>
-                                        <select class="form-control" id="" name="status">
+                                        <select class="form-control @error('status') is-invalid @enderror" id=""
+                                            name="status">
                                             <option value="" hidden>Please
                                                 Select Status</option>
                                             <option value="1" @selected(old('status') == 1)>Active</option>

@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Service\ServiceRequest;
 use App\Models\Service;
-use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
     public function index()
     {
         $services = Service::asc('id')->get();
+
         return view('backend.pages.service.manage', compact('services'));
     }
 
@@ -19,51 +20,32 @@ class ServiceController extends Controller
         return view('backend.pages.service.create');
     }
 
-    public function store(Request $request)
+    public function store(ServiceRequest $request)
     {
-        $service              = new Service();
-        $service->about_id    = 1;
-        $service->name        = $request->name;
-        $service->description = $request->description;
-        $service->image_link  = $request->image_link;
-
-        $service->save();
+        $service = Service::create($request->validated());
         flash('success', 'Service Has Been Added!');
+
         return redirect()->route('service.manage');
     }
 
-    public function edit($id)
+    public function edit(Service $service)
     {
-        $service = Service::find($id);
-        if (!is_null($service)) {
-            return view('backend.pages.service.edit', compact('service'));
-        } else {
-            //404
-        }
+        return view('backend.pages.service.edit', compact('service'));
     }
 
-    public function update(Request $request, $id)
+    public function update(ServiceRequest $request, Service $service)
     {
-        $service              = Service::find($id);
-        $service->name        = $request->name;
-        $service->description = $request->description;
-        $service->image_link  = $request->image_link;
-
-        $service->save();
+        $service->update($request->validated());
         flash('success', 'Service Updated Successfully!');
+
         return redirect()->route('service.manage');
     }
 
-    public function destroy($id)
+    public function destroy(Service $service)
     {
-        $service = Service::find($id);
-        if (!is_null($service)) {
+        $service->delete();
+        flash('error', 'Service Removed Successfully!');
 
-            $service->delete();
-            flash('error', 'Service Removed Successfully!');
-            return redirect()->route('service.manage');
-        } else {
-            //404
-        }
+        return redirect()->route('service.manage');
     }
 }

@@ -49,7 +49,7 @@
                                                 <div class="btn-group action-bar" role="group">
                                                     <a data-toggle="modal" data-target="#description-{{ $certificate->id }}"
                                                         href=""><i class="fas fa-eye"></i></a>
-                                                    <a href="{{ route('certificate.edit', $certificate->id) }}"><i
+                                                    <a href="{{ route('certificate.edit', $certificate) }}"><i
                                                             class="fas fa-edit"></i></a>
                                                     <a data-toggle="modal" data-target="#softdelete-{{ $certificate->id }}"
                                                         href=""><i class="fas fa-trash"></i></a>
@@ -110,11 +110,12 @@
                                                                 <button class="btn btn-secondary btn-sm"
                                                                     data-dismiss="modal" type="button">Close</button>
                                                                 <form
-                                                                    action="{{ route('certificate.destroy', $certificate->id) }}"
+                                                                    action="{{ route('certificate.destroy', $certificate) }}"
                                                                     method="POST">
                                                                     @csrf
+                                                                    @method('DELETE')
                                                                     <button class="btn btn-danger btn-sm" name="delete"
-                                                                        type="submit">Rem,ove
+                                                                        type="submit">Remove
                                                                         Certificate</button>
                                                                 </form>
                                                             </div>

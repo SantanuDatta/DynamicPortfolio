@@ -57,7 +57,7 @@
                                                 <div class="btn-group action-bar" role="group">
                                                     <a data-toggle="modal" data-target="#description-{{ $education->id }}"
                                                         href=""><i class="fas fa-eye"></i></a>
-                                                    <a href="{{ route('education.edit', $education->id) }}"><i
+                                                    <a href="{{ route('education.edit', $education) }}"><i
                                                             class="fas fa-edit"></i></a>
                                                     <a data-toggle="modal" data-target="#softdelete-{{ $education->id }}"
                                                         href=""><i class="fas fa-trash"></i></a>
@@ -117,11 +117,12 @@
                                                                 <button class="btn btn-secondary btn-sm"
                                                                     data-dismiss="modal" type="button">Close</button>
                                                                 <form
-                                                                    action="{{ route('education.destroy', $education->id) }}"
+                                                                    action="{{ route('education.destroy', $education) }}"
                                                                     method="POST">
                                                                     @csrf
+                                                                    @method('DELETE')
                                                                     <button class="btn btn-danger btn-sm" name="delete"
-                                                                        type="submit">Rem,ove
+                                                                        type="submit">Remove
                                                                         Education</button>
                                                                 </form>
                                                             </div>

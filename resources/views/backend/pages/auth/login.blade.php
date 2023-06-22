@@ -3,7 +3,7 @@
 
 <head>
     <!-- Required meta tags -->
-    @include('backend.includes.header')
+    @include('backend.includes.header', ['title' => 'Login'])
     @include('backend.includes.css')
 </head>
 

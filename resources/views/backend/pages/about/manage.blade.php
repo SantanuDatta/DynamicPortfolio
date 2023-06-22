@@ -19,14 +19,14 @@
                         Manage Summary
                     </div><!-- card-header -->
                     <div class="card-body bd bd-t-0 rounded-bottom">
-                        <form action="{{ route('about.update', $about) }}" method="POST">
+                        <form action="{{ route('about.update', $about) }}" method="POST" novalidate>
                             @csrf
-                            @method('PATCH');
+                            @method('PATCH')
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="">Name</label>
-                                        <input class="form-control" name="name" type="text"
+                                        <input class="form-control @error('name') is-invalid @enderror" name="name" type="text"
                                             value="{{ $about->user->name }}">
                                         @error('name')
                                             <div class="text text-danger">{{ $message }}</div>
@@ -35,7 +35,7 @@
                                     <div class="form-group">
                                         <label for="">Describe
                                             Yourself</label>
-                                        <textarea class="form-control" id="short_desc" name="description">{{ $about->description }}</textarea>
+                                        <textarea class="form-control @error('short_desc') is-invalid @enderror" id="short_desc" name="description">{{ $about->description }}</textarea>
                                         @error('description')
                                             <div class="text text-danger">{{ $message }}</div>
                                         @enderror
@@ -44,7 +44,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="">Your Email</label>
-                                        <input class="form-control" name="email" type="email"
+                                        <input class="form-control @error('email') is-invalid @enderror" name="email" type="email"
                                             value="{{ $about->email }}" placeholder="Your Email Address">
                                         @error('email')
                                             <div class="text text-danger">{{ $message }}</div>
@@ -52,7 +52,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="">Phone</label>
-                                        <input class="form-control" name="phone" type="text"
+                                        <input class="form-control @error('phone') is-invalid @enderror" name="phone" type="text"
                                             value="{{ $about->phone }}" placeholder="Your Phone Number">
                                         @error('phone')
                                             <div class="text text-danger">{{ $message }}</div>

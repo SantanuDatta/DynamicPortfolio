@@ -57,7 +57,7 @@
                                                 <div class="btn-group action-bar" role="group">
                                                     <a data-toggle="modal" data-target="#description-{{ $experience->id }}"
                                                         href=""><i class="fas fa-eye"></i></a>
-                                                    <a href="{{ route('experience.edit', $experience->id) }}"><i
+                                                    <a href="{{ route('experience.edit', $experience) }}"><i
                                                             class="fas fa-edit"></i></a>
                                                     <a data-toggle="modal" data-target="#softdelete-{{ $experience->id }}"
                                                         href=""><i class="fas fa-trash"></i></a>
@@ -117,11 +117,12 @@
                                                                 <button class="btn btn-secondary btn-sm"
                                                                     data-dismiss="modal" type="button">Close</button>
                                                                 <form
-                                                                    action="{{ route('experience.destroy', $experience->id) }}"
+                                                                    action="{{ route('experience.destroy', $experience) }}"
                                                                     method="POST">
                                                                     @csrf
+                                                                    @method('DELETE')
                                                                     <button class="btn btn-danger btn-sm" name="delete"
-                                                                        type="submit">Rem,ove
+                                                                        type="submit">Remove
                                                                         Experience</button>
                                                                 </form>
                                                             </div>

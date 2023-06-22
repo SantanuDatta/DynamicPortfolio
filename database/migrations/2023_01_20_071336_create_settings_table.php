@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('settings', function (Blueprint $table) {
-            $table->integer('id')->default(1);
+            $table->id()->default(1)->index();
             $table->string('site_title')->unique();
             $table->text('favicon')->nullable();
             $table->string('email')->nullable();

@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Experience\ExperienceRequest;
 use App\Models\Experience;
-use Illuminate\Http\Request;
 
 class ExperienceController extends Controller
 {
     public function index()
     {
         $experiences = Experience::asc('id')->get();
+
         return view('backend.pages.experience.manage', compact('experiences'));
     }
 
@@ -19,54 +20,32 @@ class ExperienceController extends Controller
         return view('backend.pages.experience.create');
     }
 
-    public function store(Request $request)
+    public function store(ExperienceRequest $request)
     {
-        $experience               = new Experience();
-        $experience->about_id     = 1;
-        $experience->worked_at    = $request->worked_at;
-        $experience->company_info = $request->company_info;
-        $experience->worked_as    = $request->worked_as;
-        $experience->start_date   = $request->start_date;
-        $experience->end_date     = $request->end_date;
-
-        $experience->save();
+        $experience = Experience::create($request->validated());
         flash('success', 'New Experience Added!');
+
         return redirect()->route('experience.manage');
     }
 
-    public function edit($id)
+    public function edit(Experience $experience)
     {
-        $experience = Experience::find($id);
-        if (!is_null($experience)) {
-            return view('backend.pages.experience.edit', compact('experience'));
-        } else {
-            //404
-        }
+        return view('backend.pages.experience.edit', compact('experience'));
     }
 
-    public function update(Request $request, $id)
+    public function update(ExperienceRequest $request, Experience $experience)
     {
-        $experience               = Experience::find($id);
-        $experience->worked_at    = $request->worked_at;
-        $experience->company_info = $request->company_info;
-        $experience->worked_as    = $request->worked_as;
-        $experience->start_date   = $request->start_date;
-        $experience->end_date     = $request->end_date;
-
-        $experience->save();
+        $experience->update($request->validated());
         flash('success', 'Experience Updated!');
+
         return redirect()->route('experience.manage');
     }
 
-    public function destroy($id)
+    public function destroy(Experience $experience)
     {
-        $experience = Experience::find($id);
-        if (!is_null($experience)) {
-            $experience->delete();
-            flash('error', 'Experience Removed Successfully!');
-            return redirect()->route('experience.manage');
-        } else {
-            //404
-        }
+        $experience->delete();
+        flash('error', 'Experience Removed Successfully!');
+
+        return redirect()->route('experience.manage');
     }
 }

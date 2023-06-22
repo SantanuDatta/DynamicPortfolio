@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('portfolios', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->integer('category_id');
             $table->string('name')->unique();
             $table->string('slug');

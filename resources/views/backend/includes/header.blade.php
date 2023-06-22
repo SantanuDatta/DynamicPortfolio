@@ -26,4 +26,4 @@
 <meta name="author" content="ThemePixels">
 
 
-<title>{{ $settings->site_title }} - @yield('title')</title>
+<title>{{ $settings->site_title }} - {{ $title ?? '' }} @yield('title')</title>

@@ -19,21 +19,27 @@
                         Add Certificate
                     </div><!-- card-header -->
                     <div class="card-body bd bd-t-0 rounded-bottom">
-                        <form action="{{ route('certificate.store') }}" method="POST">
+                        <form action="{{ route('certificate.store') }}" method="POST" novalidate>
                             @csrf
                             <div class="row">
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <label for="">Certficate Id<span class="tx-danger">*</span></label>
-                                        <input class="form-control" name="c_id" type="text"
-                                            placeholder="Id Of The Degree You Have Got?">
+                                        <input class="form-control @error('c_id') is-invalid @enderror" name="c_id" type="text"
+                                            placeholder="Id Of The Degree You Have Got?" value="{{ old('c_id') }}">
+                                        @error('c_id')
+                                            <span class="tx-danger"> {{ $message }} </span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <label for="">Degree</label>
-                                        <input class="form-control" id="" name="degree" type="text"
-                                            placeholder="What Degree Did You Get?">
+                                        <input class="form-control @error('degree') is-invalid @enderror" id="" name="degree" type="text"
+                                            placeholder="What Degree Did You Get?" value="{{ old('degree') }}">
+                                        @error('degree')
+                                            <span class="tx-danger"> {{ $message }} </span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
@@ -44,9 +50,12 @@
                                                 <span class="input-group-text"><i
                                                         class="ion-ios-calendar tx-16 lh-0 op-6"></i></span>
                                             </div>
-                                            <input class="form-control fc-datepicker" name="date" type="text"
-                                                placeholder="MM/DD/YYYY">
+                                            <input class="form-control fc-datepicker @error('date') is-invalid @enderror" name="date" type="text"
+                                                placeholder="MM/DD/YYYY" value="{{ old('date') }}">
                                         </div>
+                                        @error('date')
+                                            <span class="tx-danger"> {{ $message }} </span>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <button class="btn btn-teal float-right" name="addCertificate" type="submit">Add

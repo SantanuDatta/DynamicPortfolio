@@ -20,14 +20,14 @@
                     </div><!-- card-header -->
                     <div class="card-body bd bd-t-0 rounded-bottom">
                         <form action="{{ route('category.update', $category->id) }}" method="POST"
-                            enctype="multipart/form-data">
+                            enctype="multipart/form-data" novalidate>
                             @csrf
                             @method('PATCH')
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="">Category Name<span class="tx-danger">*</span></label>
-                                        <input class="form-control form-control-dark" name="name" type="text"
+                                        <input class="form-control @error('name') is-invalid @enderror" name="name" type="text"
                                             value="{{ $category->name }}" placeholder="Please Input Category Name">
                                         @error('name')
                                             <div class="text text-danger">{{ $message }}</div>
@@ -36,7 +36,7 @@
                                     <div class="form-group">
                                         <label for="">Category Short
                                             Description</label>
-                                        <textarea class="form-control form-control-dark" id="short_desc" name="description">{{ $category->description }}</textarea>
+                                        <textarea class="form-control" id="short_desc" name="description">{{ $category->description }}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -60,7 +60,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="">Select A Status<span class="tx-danger">*</span></label>
-                                        <select class="form-control form-control-dark" id="" name="status">
+                                        <select class="form-control @error('status') is-invalid @enderror" id="" name="status">
                                             <option value="" hidden>Please
                                                 Select Status</option>
                                             <option value="1" @selected($category->status == 1)>

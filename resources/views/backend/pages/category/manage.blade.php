@@ -130,6 +130,7 @@
                                                                     action="{{ route('category.destroy', $category) }}"
                                                                     method="POST">
                                                                     @csrf
+                                                                    @method('DELETE')
                                                                     <button class="btn btn-danger btn-sm" name="delete"
                                                                         type="submit">Delete
                                                                         Category</button>

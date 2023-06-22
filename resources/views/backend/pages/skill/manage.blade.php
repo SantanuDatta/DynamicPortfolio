@@ -46,7 +46,7 @@
                                                 <div class="btn-group action-bar" role="group">
                                                     <a data-toggle="modal" data-target="#description-{{ $skill->id }}"
                                                         href=""><i class="fas fa-eye"></i></a>
-                                                    <a href="{{ route('skill.edit', $skill->id) }}"><i
+                                                    <a href="{{ route('skill.edit', $skill) }}"><i
                                                             class="fas fa-edit"></i></a>
                                                     <a data-toggle="modal" data-target="#softdelete-{{ $skill->id }}"
                                                         href=""><i class="fas fa-trash"></i></a>
@@ -105,9 +105,10 @@
                                                             <div class="modal-footer">
                                                                 <button class="btn btn-secondary btn-sm"
                                                                     data-dismiss="modal" type="button">Close</button>
-                                                                <form action="{{ route('skill.destroy', $skill->id) }}"
+                                                                <form action="{{ route('skill.destroy', $skill) }}"
                                                                     method="POST">
                                                                     @csrf
+                                                                    @method('DELETE')
                                                                     <button class="btn btn-danger btn-sm" name="delete"
                                                                         type="submit">Remove
                                                                         Skill</button>

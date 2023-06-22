@@ -3,49 +3,24 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\UserRequest;
 use App\Models\User;
-use File;
-use Illuminate\Http\Request;
-use Intervention\Image\Facades\Image;
+use App\Services\UserService;
 
 class UserController extends Controller
 {
     public function index()
     {
-        $users = User::where('id', 1)->get();
+        $users = User::find(1);
+
         return view('backend.pages.user.detail', compact('users'));
     }
 
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, User $user, UserService $data)
     {
-        $user             = User::find($id);
-        $user->name       = $request->name;
-        $user->email      = $request->email;
-        $user->occupation = $request->occupation;
-        if ($request->image) {
-            if (File::exists('backend/img/user/' . $user->image)) {
-                File::delete('backend/img/user/' . $user->image);
-            }
-            $image       = $request->file('image');
-            $img         = strtolower(str_replace(' ', '-', $user->name)) . '-' . rand() . '.' . $image->getClientOriginalExtension();
-            $location    = public_path('backend/img/user/' . $img);
-            $imageResize = Image::make($image);
-            $imageResize->fit(696, 696, null, 'top')->save($location);
-            $user->image = $img;
-        }
-        if ($request->pdf) {
-            if (File::exists('backend/pdf/' . $user->pdf)) {
-                File::delete('backend/pdf/' . $user->pdf);
-            }
-            $pdf       = public_path('backend/pdf/');
-            $pdf       = $request->pdf->move($pdf, 'Resume.pdf');
-            $pdf       = $pdf . '/Resume.pdf';
-            $pdf       = pathinfo($pdf, PATHINFO_BASENAME);
-            $user->pdf = $pdf;
-        }
-
-        $user->save();
+        $data->update($user, $request->validated());
         flash('success', 'Updated Successfully!');
+
         return back();
     }
 }

@@ -19,34 +19,49 @@
                         Manage Details
                     </div><!-- card-header -->
                     <div class="card-body bd bd-t-0 rounded-bottom">
-                        <form action="{{ route('user.update', $users->id) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('user.update', $users) }}" method="POST" enctype="multipart/form-data"
+                            novalidate>
                             @csrf
+                            @method('PATCH')
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="">Name</label>
-                                        <input class="form-control" name="name" type="text"
-                                            value="{{ $users->name }}">
+                                        <input class="form-control @error('name') is-invalid @enderror" name="name"
+                                            type="text" value="{{ $users->name }}">
+                                        @error('name')
+                                            <div class="text text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <label for="">Your Email</label>
-                                        <input class="form-control" name="email" type="email"
-                                            value="{{ $users->email }}" placeholder="Enter Email Address">
+                                        <input class="form-control @error('email') is-invalid @enderror" name="email"
+                                            type="email" value="{{ $users->email }}" placeholder="Enter Email Address">
+                                        @error('email')
+                                            <div class="text text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <label for="">Occupation</label>
-                                        <input class="form-control" name="occupation" type="text"
-                                            value="{{ $users->occupation }}" placeholder="What Do You Do?">
+                                        <input class="form-control @error('occupation') is-invalid @enderror"
+                                            name="occupation" type="text" value="{{ $users->occupation }}"
+                                            placeholder="What Do You Do?">
+                                        @error('occupation')
+                                            <div class="text text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <label for="">Upload/PDF</label>
                                         @if (!is_null($users->image))
                                             <div class="custom-file">
-                                                <input class="custom-file-input" id="pdf" name="pdf"
-                                                    type="file">
+                                                <input class="custom-file-input @error('pdf') is-invalid @enderror"
+                                                    id="pdf" name="pdf" type="file">
                                                 <label
                                                     class="custom-file-label custom-file-label-primary">{{ $users->pdf }}</label>
                                             </div>
+                                            @error('pdf')
+                                                <div class="text text-danger">{{ $message }}</div>
+                                            @enderror
                                         @else
                                             <div class="custom-file">
                                                 <input class="custom-file-input" id="pdf" name="pdf"
@@ -66,11 +81,14 @@
                                                 src="{{ asset('backend/img/user/' . $users->image) }}"
                                                 style="width: 25%; border-radius: 50%; border: 3px solid #116d60;"><br>
                                             <div class="custom-file">
-                                                <input class="custom-file-input" id="image" name="image"
-                                                    type="file">
+                                                <input class="custom-file-input @error('image') is-invalid @enderror"
+                                                    id="image" name="image" type="file">
                                                 <label
                                                     class="custom-file-label custom-file-label-primary">{{ $users->image }}</label>
                                             </div>
+                                            @error('image')
+                                                <div class="text text-danger">{{ $message }}</div>
+                                            @enderror
                                         @else
                                             <img class="img-fluid d-block mx-auto"
                                                 src="{{ asset('backend/img/user/default.png') }}"
