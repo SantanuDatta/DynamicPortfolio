@@ -2,30 +2,31 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "require": {
-        "php": "^8.1.0",
-        "alexusmai/laravel-file-manager": "^3.0",
-        "ckeditor/ckeditor": "^4.21",
-        "guzzlehttp/guzzle": "^7.5.1",
+        "php": "^8.3.0",
+        "alexusmai/laravel-file-manager": "^3.1.1",
+        "ckeditor/ckeditor": "^4.25",
+        "guzzlehttp/guzzle": "^7.9.2",
         "intervention/image": "^2.7.2",
-        "laravel/framework": "^10.8",
-        "laravel/sanctum": "^3.2.1",
-        "laravel/tinker": "^2.8.1"
+        "laravel/framework": "^10.48.22",
+        "laravel/sanctum": "^3.3.3",
+        "laravel/tinker": "^2.10.0"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.8",
-        "barryvdh/laravel-ide-helper": "^2.13",
-        "beyondcode/laravel-query-detector": "^1.7",
-        "fakerphp/faker": "^1.21",
-        "laravel/breeze": "^1.20.2",
-        "laravel/pint": "^1.9",
-        "laravel/sail": "^1.21.4",
-        "mockery/mockery": "^1.5.1",
-        "nunomaduro/collision": "^6.4",
-        "phpunit/phpunit": "^9.6.7",
-        "spatie/laravel-ignition": "^2.1"
+        "barryvdh/laravel-debugbar": "^3.14.6",
+        "barryvdh/laravel-ide-helper": "^2.15.1",
+        "fakerphp/faker": "^1.23.1",
+        "laravel/breeze": "^1.29.1",
+        "laravel/pint": "^1.18.1",
+        "mockery/mockery": "^1.6.12",
+        "nunomaduro/collision": "^7.11",
+        "phpunit/phpunit": "^10.5.37",
+        "spatie/laravel-ignition": "^2.8"
     },
     "autoload": {
         "psr-4": {
@@ -47,10 +48,16 @@
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
         ],
+        "post-install-cmd": [
+            "@php artisan ide-helper:generate",
+            "@php artisan ide-helper:meta",
+            "@php artisan ide-helper:models --nowrite"
+        ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
-            "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-            "@php artisan ide-helper:generate"
+            "@php artisan ide-helper:generate",
+            "@php artisan ide-helper:meta",
+            "@php artisan ide-helper:models --nowrite"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
